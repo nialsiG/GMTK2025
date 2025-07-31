@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0unv0yhgcwao"]
+
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_sl07k"]
+[ext_resource type="Script" path="res://scenes/player/player.gd" id="2_eh76i"]
+[ext_resource type="Texture2D" uid="uid://clqs5ee2vltco" path="res://assets/icon.svg" id="3_a3a8d"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3pamf"]
+
+[node name="main" type="Node"]
+script = ExtResource("1_sl07k")
+
+[node name="3C" type="Node3D" parent="."]
+
+[node name="Player" type="CharacterBody3D" parent="3C"]
+script = ExtResource("2_eh76i")
+
+[node name="Camera3D" type="Camera3D" parent="3C/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.76055)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="3C/Player"]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_3pamf")
+
+[node name="SpriteDiplocaulus01" type="Sprite3D" parent="3C/Player"]
+texture = ExtResource("3_a3a8d")
+
+[node name="Background" type="Sprite3D" parent="."]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, -3)
+texture = ExtResource("3_a3a8d")
