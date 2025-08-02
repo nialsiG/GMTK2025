@@ -1,7 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://25ie1cikwp5a"]
+[gd_scene load_steps=8 format=3 uid="uid://25ie1cikwp5a"]
 
 [ext_resource type="Script" path="res://scenes/procedural_generation/river_chunk.gd" id="1_q0xem"]
 [ext_resource type="Texture2D" uid="uid://clqs5ee2vltco" path="res://assets/icon.svg" id="2_rvvx4"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4jg58"]
+albedo_texture = ExtResource("2_rvvx4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_80em4"]
+albedo_texture = ExtResource("2_rvvx4")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8gud"]
+albedo_color = Color(0.3, 0.2354, 0.096, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_x8cn2"]
+material = SubResource("StandardMaterial3D_a8gud")
+size = Vector2(10, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_12l6c"]
+size = Vector3(10, 1, 10)
 
 [node name="RiverChunk" type="Node3D"]
 script = ExtResource("1_q0xem")
@@ -11,6 +27,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
 
 [node name="Sprite3D" type="Sprite3D" parent="LeftBank"]
 transform = Transform3D(-2.18557e-07, 0, 5, 0, 5, 0, -5, 0, -2.18557e-07, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_4jg58")
 texture = ExtResource("2_rvvx4")
 
 [node name="RightBank" type="Node3D" parent="."]
@@ -18,4 +35,20 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
 
 [node name="Sprite3D" type="Sprite3D" parent="RightBank"]
 transform = Transform3D(-2.18557e-07, 0, -5, 0, 5, 0, 5, 0, -2.18557e-07, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_80em4")
 texture = ExtResource("2_rvvx4")
+
+[node name="Bottom" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="Bottom"]
+freeze = true
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Bottom/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.98027)
+mesh = SubResource("PlaneMesh_x8cn2")
+skeleton = NodePath("../..")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bottom/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.522587, -5)
+shape = SubResource("BoxShape3D_12l6c")

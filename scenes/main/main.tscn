@@ -1,17 +1,50 @@
-[gd_scene load_steps=6 format=3 uid="uid://c0unv0yhgcwao"]
+[gd_scene load_steps=14 format=3 uid="uid://c0unv0yhgcwao"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_sl07k"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="2_eh76i"]
 [ext_resource type="Texture2D" uid="uid://clqs5ee2vltco" path="res://assets/icon.svg" id="3_a3a8d"]
 [ext_resource type="Script" path="res://scenes/procedural_generation/river_chunk_factory.gd" id="3_gb04c"]
+[ext_resource type="LabelSettings" uid="uid://bye3vxwg60mt5" path="res://resources/labels/game_title.tres" id="5_edcw7"]
+[ext_resource type="Theme" uid="uid://bflh17b8kclhy" path="res://resources/labels/button_theme.tres" id="6_66ijs"]
+[ext_resource type="LabelSettings" uid="uid://by2uc5jlkvm74" path="res://resources/labels/game_instructions.tres" id="6_hdddv"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2o2lu"]
+sky_top_color = Color(0.0114498, 1.60035e-06, 0.113532, 1)
+sky_horizon_color = Color(0.16877, 0.0103856, 0.118141, 1)
+ground_bottom_color = Color(0.0396159, 0.0118756, 7.52043e-10, 1)
+ground_horizon_color = Color(0.132499, 0.061222, 0.00376969, 1)
+
+[sub_resource type="Sky" id="Sky_1fj1x"]
+sky_material = SubResource("ProceduralSkyMaterial_2o2lu")
+
+[sub_resource type="Environment" id="Environment_0vbyx"]
+background_mode = 2
+sky = SubResource("Sky_1fj1x")
+sdfgi_enabled = true
+fog_light_color = Color(0.110187, 0.294093, 0.280546, 1)
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0.67, 0.67, 0.67, 1)
+volumetric_fog_emission = Color(0.0502237, 0.194271, 0.215171, 1)
+volumetric_fog_emission_energy = 0.2
+adjustment_enabled = true
+adjustment_brightness = 1.5
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fcisd"]
+albedo_texture = ExtResource("3_a3a8d")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3pamf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_stdfw"]
 
 [node name="main" type="Node"]
 script = ExtResource("1_sl07k")
 
-[node name="Background" type="Sprite3D" parent="."]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, -20)
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_0vbyx")
+
+[node name="Background" type="Sprite3D" parent="WorldEnvironment"]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, -30)
+material_override = SubResource("StandardMaterial3D_fcisd")
 texture = ExtResource("3_a3a8d")
 
 [node name="Environment" type="Node3D" parent="."]
@@ -20,12 +53,29 @@ texture = ExtResource("3_a3a8d")
 script = ExtResource("3_gb04c")
 
 [node name="3C" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="Menu_Camera" type="Node3D" parent="3C"]
+unique_name_in_owner = true
+
+[node name="Camera3D" type="Camera3D" parent="3C/Menu_Camera"]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, 3)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="3C/Menu_Camera"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+light_color = Color(0.896694, 0.85401, 0.80025, 1)
+light_energy = 4.0
+light_volumetric_fog_energy = 0.1
+spot_range = 30.0
+spot_angle = 60.0
+spot_angle_attenuation = 4.0
 
 [node name="Player" type="CharacterBody3D" parent="3C"]
+unique_name_in_owner = true
 script = ExtResource("2_eh76i")
 
 [node name="Camera3D" type="Camera3D" parent="3C/Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2.76055)
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, 3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="3C/Player"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
@@ -33,3 +83,163 @@ shape = SubResource("CapsuleShape3D_3pamf")
 
 [node name="SpriteDiplocaulus01" type="Sprite3D" parent="3C/Player"]
 texture = ExtResource("3_a3a8d")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="3C/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+light_color = Color(0.896694, 0.85401, 0.80025, 1)
+light_energy = 4.0
+light_volumetric_fog_energy = 0.1
+spot_range = 30.0
+spot_angle = 60.0
+spot_angle_attenuation = 4.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Overlay" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="StartMenu" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/StartMenu"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -633.0
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="GameTitleLabel" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Permian Swamp Cruise"
+label_settings = ExtResource("5_edcw7")
+horizontal_alignment = 1
+
+[node name="InstructionsLabel" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Press any key to start"
+label_settings = ExtResource("6_hdddv")
+horizontal_alignment = 1
+
+[node name="Control" type="Panel" parent="CanvasLayer/StartMenu/VBoxContainer"]
+custom_minimum_size = Vector2(1500, 500)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_stdfw")
+
+[node name="OptionsMenu" type="Control" parent="CanvasLayer/StartMenu/VBoxContainer/Control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer"]
+layout_mode = 2
+
+[node name="Contrast" type="HBoxContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/Contrast"]
+layout_mode = 2
+text = "Contrast"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/Contrast"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="Brightness" type="HBoxContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/Brightness"]
+layout_mode = 2
+text = "Brightness"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/Brightness"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="MusicVolume" type="HBoxContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/MusicVolume"]
+layout_mode = 2
+text = "Music Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/MusicVolume"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="SfxVolume" type="HBoxContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/SfxVolume"]
+layout_mode = 2
+text = "SFX Volume"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSlider" type="HSlider" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/SfxVolume"]
+custom_minimum_size = Vector2(300, 50)
+layout_mode = 2
+
+[node name="OptionsButton" type="Button" parent="CanvasLayer/StartMenu"]
+layout_mode = 0
+offset_left = 1758.0
+offset_top = 996.0
+offset_right = 1880.0
+offset_bottom = 1046.0
+theme = ExtResource("6_66ijs")
+text = "Options"
+
+[node name="InfoScreen" type="Control" parent="CanvasLayer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="CanvasLayer/StartMenu/OptionsButton" to="." method="_on_options_button_pressed"]
