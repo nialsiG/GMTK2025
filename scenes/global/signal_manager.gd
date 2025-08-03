@@ -1,7 +1,7 @@
 extends Node
 
 signal GameOver
-
+signal PlayerAtSurface
 signal NewRiverChunk(origin: Vector3)
 
 # points
@@ -14,4 +14,4 @@ signal UnlockOrthacanthus
 signal UnlockGerobatrachus
 signal UnlockGnathorhiza
 signal UnlockMeganeura
-signal UnlockPalaenodonta
+signal UnlockMamayocaris

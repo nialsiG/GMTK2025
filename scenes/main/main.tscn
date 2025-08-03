@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c0unv0yhgcwao"]
+[gd_scene load_steps=25 format=3 uid="uid://c0unv0yhgcwao"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_sl07k"]
 [ext_resource type="AudioStream" uid="uid://dx6mxg8oyr4qd" path="res://assets/music/FIRST_SNOW_modified.mp3" id="2_0bul8"]
@@ -9,7 +9,11 @@
 [ext_resource type="Theme" uid="uid://bflh17b8kclhy" path="res://resources/labels/button_theme.tres" id="6_66ijs"]
 [ext_resource type="LabelSettings" uid="uid://by2uc5jlkvm74" path="res://resources/labels/game_instructions.tres" id="6_hdddv"]
 [ext_resource type="Script" path="res://scenes/player/procedural_animation_component.gd" id="6_vgd0k"]
+[ext_resource type="Texture2D" uid="uid://1a3fn8o8a60y" path="res://assets/visual/player_head_01.png" id="7_0e2l8"]
 [ext_resource type="LabelSettings" uid="uid://clfkc3ikaaoin" path="res://resources/labels/score_label.tres" id="7_h8iyt"]
+[ext_resource type="Texture2D" uid="uid://d3spk4b3quhdd" path="res://assets/visual/player_head_02.png" id="8_2limp"]
+[ext_resource type="PackedScene" uid="uid://bsjc4qvhmuoow" path="res://scenes/player/segment_1.tscn" id="9_by1mr"]
+[ext_resource type="Shader" path="res://resources/shaders/higlight_button.gdshader" id="14_aymbh"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2o2lu"]
 sky_top_color = Color(0.0114498, 1.60035e-06, 0.113532, 1)
@@ -37,7 +41,41 @@ albedo_texture = ExtResource("3_a3a8d")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3pamf"]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_32tcw"]
+atlas = ExtResource("7_0e2l8")
+region = Rect2(0, 0, 100, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0f2oh"]
+atlas = ExtResource("8_2limp")
+region = Rect2(0, 0, 100, 76)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2esa3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32tcw")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0f2oh")
+}],
+"loop": true,
+"name": &"going_up",
+"speed": 5.0
+}]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_stdfw"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_grc01"]
+shader = ExtResource("14_aymbh")
+shader_parameter/glow_color = Color(1, 1, 1, 1)
+shader_parameter/glow_power = 1.0
+shader_parameter/glow_shift = 1.0
+shader_parameter/glow_radius = null
 
 [node name="main" type="Node"]
 script = ExtResource("1_sl07k")
@@ -98,11 +136,40 @@ spot_range = 30.0
 spot_angle = 60.0
 spot_angle_attenuation = 4.0
 
-[node name="SpriteDiplocaulus01" type="Sprite3D" parent="3C/Player"]
-texture = ExtResource("3_a3a8d")
-
-[node name="ProceduralAnimationComponent" type="Node3D" parent="3C/Player"]
+[node name="ProceduralAnimationComponent" type="Node3D" parent="3C/Player" node_paths=PackedStringArray("node_array")]
 script = ExtResource("6_vgd0k")
+isAnimated = true
+node_array = [NodePath("../AnimatedHead"), NodePath("../../BodyNodes/Segment_1"), NodePath("../../BodyNodes/Segment_2"), NodePath("../../BodyNodes/Segment_3"), NodePath("../../BodyNodes/Segment_4"), NodePath("../../BodyNodes/Segment_5"), NodePath("../../BodyNodes/Segment_6"), NodePath("../../BodyNodes/Segment_7"), NodePath("../../BodyNodes/Segment_8"), NodePath("../../BodyNodes/Segment_9"), NodePath("../../BodyNodes/Segment_10")]
+
+[node name="Timer" type="Timer" parent="3C/Player/ProceduralAnimationComponent"]
+autostart = true
+
+[node name="AnimatedHead" type="AnimatedSprite3D" parent="3C/Player"]
+sprite_frames = SubResource("SpriteFrames_2esa3")
+
+[node name="Timer" type="Timer" parent="3C/Player/AnimatedHead"]
+
+[node name="BodyNodes" type="Node3D" parent="3C"]
+
+[node name="Segment_1" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
+
+[node name="Segment_2" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
+
+[node name="Segment_3" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
+
+[node name="Segment_4" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
+
+[node name="Segment_5" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
+
+[node name="Segment_6" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
+
+[node name="Segment_7" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
+
+[node name="Segment_8" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
+
+[node name="Segment_9" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
+
+[node name="Segment_10" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -300,6 +367,7 @@ grow_vertical = 2
 
 [node name="InfoScreenButton" type="TextureButton" parent="CanvasLayer"]
 process_mode = 3
+material = SubResource("ShaderMaterial_grc01")
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -311,5 +379,7 @@ grow_horizontal = 0
 size_flags_horizontal = 8
 texture_normal = ExtResource("3_a3a8d")
 
+[connection signal="timeout" from="3C/Player/ProceduralAnimationComponent/Timer" to="3C/Player/ProceduralAnimationComponent" method="_on_timer_timeout"]
+[connection signal="timeout" from="3C/Player/AnimatedHead/Timer" to="3C/Player" method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/StartMenu/OptionsButton" to="." method="_on_options_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/InfoScreenButton" to="." method="_on_info_screen_button_pressed"]

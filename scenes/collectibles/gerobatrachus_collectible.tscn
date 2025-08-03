@@ -1,21 +1,30 @@
-[gd_scene load_steps=5 format=3 uid="uid://b1w72r6pbhd12"]
+[gd_scene load_steps=6 format=3 uid="uid://b1w72r6pbhd12"]
 
 [ext_resource type="PackedScene" uid="uid://ddwksuod3o1um" path="res://scenes/collectibles/collectible.tscn" id="1_uxq7u"]
 [ext_resource type="Texture2D" uid="uid://ecpkvoe83mfg" path="res://assets/visual/gerobatrachus.png" id="2_dp88v"]
+[ext_resource type="Script" path="res://scenes/collectibles/gerobatrachus_move_component.gd" id="3_eiqfq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44ryi"]
 transparency = 1
 albedo_texture = ExtResource("2_dp88v")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hlhgf"]
-radius = 0.922895
-height = 3.42437
+radius = 0.208
+height = 1.02273
 
 [node name="collectible" instance=ExtResource("1_uxq7u")]
 
 [node name="Sprite3D" type="Sprite3D" parent="." index="0"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_44ryi")
 texture = ExtResource("2_dp88v")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 shape = SubResource("CapsuleShape3D_hlhgf")
+
+[node name="MoveComponent" type="Node3D" parent="." index="2"]
+script = ExtResource("3_eiqfq")
+
+[node name="Timer" type="Timer" parent="MoveComponent" index="0"]
+
+[connection signal="timeout" from="MoveComponent/Timer" to="MoveComponent" method="_on_timer_timeout"]

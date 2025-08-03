@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://tdw2wjgu4vsm"]
+
+[ext_resource type="PackedScene" uid="uid://bf4vifu1knd7l" path="res://scenes/obstacles/obstacle.tscn" id="1_r4546"]
+[ext_resource type="Texture2D" uid="uid://nxx26a4a5fjp" path="res://assets/visual/diplauculus_magnicornis.png" id="3_1ln2i"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0x0e8"]
+transparency = 1
+albedo_texture = ExtResource("3_1ln2i")
+
+[node name="Obstacle" instance=ExtResource("1_r4546")]
+obstacle_type = 1
+
+[node name="Sprite3D" type="Sprite3D" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_0x0e8")
+texture = ExtResource("3_1ln2i")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="." index="1"]
+polygon = PackedVector2Array(0.129105, 2.80175, -0.844107, 2.37212, -1.75142, 1.49739, -2.78278, 0.133143, -1.77325, -0.119128, -1.65215, -1.23287, -1.23489, -1.76511, -0.795722, -2.86866, 1.32754, -2.93317, 1.49641, -2.18983, 1.97101, -2.27146, 1.73689, -0.529178, 1.85796, 0.0940522, 2.96741, 0.239181, 0.735119, 2.65012)

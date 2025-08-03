@@ -14,8 +14,8 @@ func _on_body_entered(body):
 			SignalManager.UnlockGnathorhiza.emit()
 		Enums.CollectibleType.MEGANEURA:
 			SignalManager.UnlockMeganeura.emit()
-		Enums.CollectibleType.PALAENODONTA:
-			SignalManager.UnlockPalaenodonta.emit()
+		Enums.CollectibleType.MAMAYOCARIS:
+			SignalManager.UnlockMamayocaris.emit()
 	
 	await get_tree().create_timer(0.05).timeout
 	queue_free()

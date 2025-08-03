@@ -15,11 +15,12 @@ func _physics_process(_delta):
 		SignalManager.AddPoints.emit(obstacle_points)
 
 func _on_body_entered(body):
-	SignalManager.GameOver.emit()
-	match obstacle_type:
-		Enums.ObstacleType.DIMETRODON:
-			SignalManager.UnlockDimetrodon.emit()
-		Enums.ObstacleType.DIPLOCAULUS:
-			SignalManager.UnlockDiplocaulus.emit()
-		Enums.ObstacleType.ORTHACANTHUS:
-			SignalManager.UnlockOrthacanthus.emit()
+	if body is CharacterBody3D:
+		SignalManager.GameOver.emit()
+		match obstacle_type:
+			Enums.ObstacleType.DIMETRODON:
+				SignalManager.UnlockDimetrodon.emit()
+			Enums.ObstacleType.DIPLOCAULUS:
+				SignalManager.UnlockDiplocaulus.emit()
+			Enums.ObstacleType.ORTHACANTHUS:
+				SignalManager.UnlockOrthacanthus.emit()
