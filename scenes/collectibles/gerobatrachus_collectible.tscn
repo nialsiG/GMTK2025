@@ -1,23 +1,60 @@
-[gd_scene load_steps=6 format=3 uid="uid://b1w72r6pbhd12"]
+[gd_scene load_steps=12 format=3 uid="uid://b1w72r6pbhd12"]
 
 [ext_resource type="PackedScene" uid="uid://ddwksuod3o1um" path="res://scenes/collectibles/collectible.tscn" id="1_uxq7u"]
 [ext_resource type="Texture2D" uid="uid://ecpkvoe83mfg" path="res://assets/visual/gerobatrachus.png" id="2_dp88v"]
+[ext_resource type="Texture2D" uid="uid://c1m3hypir6iyy" path="res://assets/visual/gerobatrachus_move1.png" id="3_6lgqy"]
 [ext_resource type="Script" path="res://scenes/collectibles/gerobatrachus_move_component.gd" id="3_eiqfq"]
+[ext_resource type="Texture2D" uid="uid://ghji8j0kfw73" path="res://assets/visual/gerobatrachus_move2.png" id="4_ih186"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44ryi"]
 transparency = 1
 albedo_texture = ExtResource("2_dp88v")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ywgrr"]
+atlas = ExtResource("2_dp88v")
+region = Rect2(0, 0, 188, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcd3s"]
+atlas = ExtResource("3_6lgqy")
+region = Rect2(0, 0, 188, 250)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gujvi"]
+atlas = ExtResource("4_ih186")
+region = Rect2(0, 0, 188, 250)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vu3xu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ywgrr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcd3s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gujvi")
+}],
+"loop": true,
+"name": &"swimming",
+"speed": 3.0
+}]
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hlhgf"]
-radius = 0.208
-height = 1.02273
+radius = 0.213719
+height = 0.747267
 
 [node name="collectible" instance=ExtResource("1_uxq7u")]
 
-[node name="Sprite3D" type="Sprite3D" parent="." index="0"]
+[node name="AnimatedSprite" type="AnimatedSprite3D" parent="." index="0"]
 transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 material_override = SubResource("StandardMaterial3D_44ryi")
-texture = ExtResource("2_dp88v")
+sprite_frames = SubResource("SpriteFrames_vu3xu")
+animation = &"swimming"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 shape = SubResource("CapsuleShape3D_hlhgf")

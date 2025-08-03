@@ -1,4 +1,7 @@
-[gd_resource type="LabelSettings" format=3 uid="uid://clfkc3ikaaoin"]
+[gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://clfkc3ikaaoin"]
+
+[ext_resource type="FontFile" uid="uid://dyjre5s4jaqsf" path="res://resources/SlacksideOne-Regular.ttf" id="1_4ei0f"]
 
 [resource]
+font = ExtResource("1_4ei0f")
 font_size = 60

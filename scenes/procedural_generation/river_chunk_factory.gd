@@ -5,6 +5,7 @@ extends Node
 const EMPTY_CHUNK = preload("res://scenes/procedural_generation/empty_chunk.tscn")
 # ...obstacles
 const OBSTACLE_DIMETRODON = preload("res://scenes/obstacles/obstacle_dimetrodon.tscn")
+const OBSTACLE_ORTHACANTHUS = preload("res://scenes/obstacles/obstacle_orthacanthus.tscn")
 
 # ...collectibles
 const GEROBATRACHUS_COLLECTIBLE = preload("res://scenes/collectibles/gerobatrachus_collectible.tscn")
@@ -30,7 +31,7 @@ func SpawnObstacle(parent, type: Enums.ObstacleType, origin: Vector3):
 		Enums.ObstacleType.DIPLOCAULUS:
 			pass
 		Enums.ObstacleType.ORTHACANTHUS:
-			pass
+			obstacle = OBSTACLE_ORTHACANTHUS.instantiate()
 	obstacle.position = origin
 	parent.add_child(obstacle)
 	SignalManager.GameOver.connect(obstacle.queue_free)
@@ -64,33 +65,38 @@ func BuildNewChunk(origin: Vector3, is_empty = false):
 			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(0,8,-5))
 			pass
 		1:
-			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(0,8,-5))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(3,3,-5))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(3,5,-10))
 			pass
 		2:
-			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(0,8,-5))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(3,3,-5))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(0,6,-7))
 			pass
 		3:
-			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(0,8,-5))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(3,3,-5))
+			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(0,8,-10))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(0,6,-7))
 			pass
 		4:
-			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(0,8,-5))
+			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(4,8,-5))
 			pass
 		5:
-			SpawnCollectible(instance, Enums.CollectibleType.GNATHORHIZA, Vector3(0,4,-5))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(-2,5,-5))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(4,2,-7))
 			pass
 		6:
-			SpawnCollectible(instance, Enums.CollectibleType.GNATHORHIZA, Vector3(0,4,-5))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(-6,3,-5))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(-3,2,-3))
 			pass
 		7:
-			SpawnCollectible(instance, Enums.CollectibleType.GNATHORHIZA, Vector3(0,4,-5))
 			pass
 		8:
-			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(0,4,-5))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(0,2,-5))
 			pass
 		9:
-			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(0,4,-5))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(0,2,-5))
+			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(2,8,-5))
 			pass
 		10:
-			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(0,4,-5))
 			pass
 	

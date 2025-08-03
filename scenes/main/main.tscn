@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_sl07k"]
 [ext_resource type="AudioStream" uid="uid://dx6mxg8oyr4qd" path="res://assets/music/FIRST_SNOW_modified.mp3" id="2_0bul8"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="2_eh76i"]
+[ext_resource type="Texture2D" uid="uid://cnad0cgl6ax6u" path="res://assets/visual/background.png" id="3_6yg6n"]
 [ext_resource type="Texture2D" uid="uid://clqs5ee2vltco" path="res://assets/visual/icon.svg" id="3_a3a8d"]
 [ext_resource type="Script" path="res://scenes/procedural_generation/river_chunk_factory.gd" id="3_gb04c"]
 [ext_resource type="LabelSettings" uid="uid://bye3vxwg60mt5" path="res://resources/labels/game_title.tres" id="5_edcw7"]
@@ -35,9 +36,6 @@ volumetric_fog_emission = Color(0.0502237, 0.194271, 0.215171, 1)
 volumetric_fog_emission_energy = 0.2
 adjustment_enabled = true
 adjustment_brightness = 1.5
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fcisd"]
-albedo_texture = ExtResource("3_a3a8d")
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3pamf"]
 
@@ -89,9 +87,8 @@ autoplay = true
 environment = SubResource("Environment_0vbyx")
 
 [node name="Background" type="Sprite3D" parent="WorldEnvironment"]
-transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 0, 0, -30)
-material_override = SubResource("StandardMaterial3D_fcisd")
-texture = ExtResource("3_a3a8d")
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, -30)
+texture = ExtResource("3_6yg6n")
 
 [node name="Environment" type="Node3D" parent="."]
 
@@ -242,7 +239,7 @@ alignment = 1
 [node name="GameTitleLabel" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 6
-text = "Permian Swamp Cruise"
+text = "Cisuralian Cruise"
 label_settings = ExtResource("5_edcw7")
 horizontal_alignment = 1
 
@@ -339,6 +336,7 @@ custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 
 [node name="OptionsButton" type="Button" parent="CanvasLayer/StartMenu"]
+visible = false
 layout_mode = 0
 offset_left = 1758.0
 offset_top = 996.0
@@ -367,6 +365,7 @@ grow_vertical = 2
 
 [node name="InfoScreenButton" type="TextureButton" parent="CanvasLayer"]
 process_mode = 3
+visible = false
 material = SubResource("ShaderMaterial_grc01")
 anchors_preset = 1
 anchor_left = 1.0

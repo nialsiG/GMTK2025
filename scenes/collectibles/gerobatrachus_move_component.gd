@@ -10,6 +10,7 @@ const SPEED = 2
 
 # nodes
 @onready var timer = $Timer
+@onready var animated_sprite: AnimatedSprite3D = $"../AnimatedSprite"
 
 # runtime variables
 var parent: Collectible
@@ -26,17 +27,17 @@ func _physics_process(delta):
 			pass
 		state.MOVING_UP:
 			parent.position += Vector3(0, delta * SPEED, 0)
-		state.MOVING_DOWN:
+			animated_sprite.material_override.albedo_texture = animated_sprite.sprite_frames.get_frame_texture("swimming", animated_sprite.get_frame())
 			parent.position -= Vector3(0, delta * SPEED / 3, 0)
 
 func ChangeState(new_state: state):
 	current_state = new_state
 	if new_state == state.MOVING_UP:
 		timer.start(1)
-		# animate
+		animated_sprite.play("swimming")
 	elif new_state == state.MOVING_DOWN:
 		timer.start(3)
-		# animate
+		animated_sprite.play("default")
 
 func _on_timer_timeout():
 	if current_state == state.MOVING_UP:
