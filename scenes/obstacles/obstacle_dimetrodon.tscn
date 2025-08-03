@@ -1,12 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://46hlb3q0s8fm"]
+[gd_scene load_steps=4 format=3 uid="uid://46hlb3q0s8fm"]
 
 [ext_resource type="PackedScene" uid="uid://bf4vifu1knd7l" path="res://scenes/obstacles/obstacle.tscn" id="1_j8ixp"]
-[ext_resource type="Texture2D" uid="uid://cvdayux5cx6cm" path="res://assets/dimetrodon.png" id="2_cjkmo"]
+[ext_resource type="Texture2D" uid="uid://cvdayux5cx6cm" path="res://assets/visual/dimetrodon.png" id="2_cjkmo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0x0e8"]
+transparency = 1
+albedo_texture = ExtResource("2_cjkmo")
 
 [node name="Obstacle" instance=ExtResource("1_j8ixp")]
 obstacle_type = 1
 
 [node name="Sprite3D" type="Sprite3D" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_0x0e8")
 texture = ExtResource("2_cjkmo")
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="." index="1"]

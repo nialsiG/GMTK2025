@@ -2,5 +2,14 @@ extends Node
 
 enum ObstacleType {
 	ROCK,
-	DIMETRODON
+	DIMETRODON,
+	DIPLOCAULUS,
+	ORTHACANTHUS
+}
+
+enum CollectibleType {
+	GEROBATRACHUS,
+	GNATHORHIZA,
+	MEGANEURA,
+	PALAENODONTA
 }

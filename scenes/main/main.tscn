@@ -1,12 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://c0unv0yhgcwao"]
+[gd_scene load_steps=17 format=3 uid="uid://c0unv0yhgcwao"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_sl07k"]
+[ext_resource type="AudioStream" uid="uid://dx6mxg8oyr4qd" path="res://assets/music/FIRST_SNOW_modified.mp3" id="2_0bul8"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="2_eh76i"]
-[ext_resource type="Texture2D" uid="uid://clqs5ee2vltco" path="res://assets/icon.svg" id="3_a3a8d"]
+[ext_resource type="Texture2D" uid="uid://clqs5ee2vltco" path="res://assets/visual/icon.svg" id="3_a3a8d"]
 [ext_resource type="Script" path="res://scenes/procedural_generation/river_chunk_factory.gd" id="3_gb04c"]
 [ext_resource type="LabelSettings" uid="uid://bye3vxwg60mt5" path="res://resources/labels/game_title.tres" id="5_edcw7"]
 [ext_resource type="Theme" uid="uid://bflh17b8kclhy" path="res://resources/labels/button_theme.tres" id="6_66ijs"]
 [ext_resource type="LabelSettings" uid="uid://by2uc5jlkvm74" path="res://resources/labels/game_instructions.tres" id="6_hdddv"]
+[ext_resource type="Script" path="res://scenes/player/procedural_animation_component.gd" id="6_vgd0k"]
+[ext_resource type="LabelSettings" uid="uid://clfkc3ikaaoin" path="res://resources/labels/score_label.tres" id="7_h8iyt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2o2lu"]
 sky_top_color = Color(0.0114498, 1.60035e-06, 0.113532, 1)
@@ -38,6 +41,11 @@ albedo_texture = ExtResource("3_a3a8d")
 
 [node name="main" type="Node"]
 script = ExtResource("1_sl07k")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("2_0bul8")
+autoplay = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0vbyx")
@@ -81,9 +89,6 @@ transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_3pamf")
 
-[node name="SpriteDiplocaulus01" type="Sprite3D" parent="3C/Player"]
-texture = ExtResource("3_a3a8d")
-
 [node name="SpotLight3D" type="SpotLight3D" parent="3C/Player"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 light_color = Color(0.896694, 0.85401, 0.80025, 1)
@@ -92,6 +97,12 @@ light_volumetric_fog_energy = 0.1
 spot_range = 30.0
 spot_angle = 60.0
 spot_angle_attenuation = 4.0
+
+[node name="SpriteDiplocaulus01" type="Sprite3D" parent="3C/Player"]
+texture = ExtResource("3_a3a8d")
+
+[node name="ProceduralAnimationComponent" type="Node3D" parent="3C/Player"]
+script = ExtResource("6_vgd0k")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -103,6 +114,43 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Overlay"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Overlay/HBoxContainer"]
+layout_mode = 2
+text = "Score: "
+label_settings = ExtResource("7_h8iyt")
+
+[node name="ScoreLabel" type="Label" parent="CanvasLayer/Overlay/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "000"
+label_settings = ExtResource("7_h8iyt")
+
+[node name="VSeparator" type="VSeparator" parent="CanvasLayer/Overlay/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Label2" type="Label" parent="CanvasLayer/Overlay/HBoxContainer"]
+layout_mode = 2
+text = "Record: "
+label_settings = ExtResource("7_h8iyt")
+
+[node name="MaxScoreLabel" type="Label" parent="CanvasLayer/Overlay/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "000"
+label_settings = ExtResource("7_h8iyt")
 
 [node name="StartMenu" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -242,4 +290,26 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Panel" type="Panel" parent="CanvasLayer/InfoScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="InfoScreenButton" type="TextureButton" parent="CanvasLayer"]
+process_mode = 3
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -164.0
+offset_top = 38.0
+offset_right = -36.0
+offset_bottom = 166.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+texture_normal = ExtResource("3_a3a8d")
+
 [connection signal="pressed" from="CanvasLayer/StartMenu/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/InfoScreenButton" to="." method="_on_info_screen_button_pressed"]

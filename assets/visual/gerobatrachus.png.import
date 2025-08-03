@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvdayux5cx6cm"
-path.s3tc="res://.godot/imported/dimetrodon.png-133ed3b614e2bb6c3dc0a10afc7275e3.s3tc.ctex"
+uid="uid://ecpkvoe83mfg"
+path.s3tc="res://.godot/imported/gerobatrachus.png-9a43fccea79c8af41d86106bdbf8403d.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/dimetrodon.png"
-dest_files=["res://.godot/imported/dimetrodon.png-133ed3b614e2bb6c3dc0a10afc7275e3.s3tc.ctex"]
+source_file="res://assets/visual/gerobatrachus.png"
+dest_files=["res://.godot/imported/gerobatrachus.png-9a43fccea79c8af41d86106bdbf8403d.s3tc.ctex"]
 
 [params]
 
