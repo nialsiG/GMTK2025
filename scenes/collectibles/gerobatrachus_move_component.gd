@@ -24,11 +24,10 @@ func _ready():
 func _physics_process(delta):
 	match current_state:
 		state.IDLE:
-			pass
+			parent.position -= Vector3(0, delta * SPEED / 3, 0)
 		state.MOVING_UP:
 			parent.position += Vector3(0, delta * SPEED, 0)
 			animated_sprite.material_override.albedo_texture = animated_sprite.sprite_frames.get_frame_texture("swimming", animated_sprite.get_frame())
-			parent.position -= Vector3(0, delta * SPEED / 3, 0)
 
 func ChangeState(new_state: state):
 	current_state = new_state
@@ -37,6 +36,7 @@ func ChangeState(new_state: state):
 		animated_sprite.play("swimming")
 	elif new_state == state.MOVING_DOWN:
 		timer.start(3)
+		animated_sprite.material_override.albedo_texture = animated_sprite.sprite_frames.get_frame_texture("default", 0)
 		animated_sprite.play("default")
 
 func _on_timer_timeout():

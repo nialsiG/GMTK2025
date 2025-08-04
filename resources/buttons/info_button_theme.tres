@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bjkb4y7bigoms"]
+
+[ext_resource type="FontFile" uid="uid://bmpdk3qu810ib" path="res://resources/fonts/CourierPrime-Italic.ttf" id="1_mhpkr"]
+
+[resource]
+default_font = ExtResource("1_mhpkr")
+default_font_size = 28

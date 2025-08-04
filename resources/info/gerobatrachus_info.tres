@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="InfoResource" load_steps=3 format=3 uid="uid://bxshkanxv2ij1"]
+
+[ext_resource type="Texture2D" uid="uid://dvwx7l77r6ggl" path="res://assets/visual/gerobatrachus_sprite.png" id="1_lp8tb"]
+[ext_resource type="Script" path="res://resources/info/info_resource.gd" id="1_uxx7n"]
+
+[resource]
+script = ExtResource("1_uxx7n")
+info_name = "Gerobatrachus"
+info_description = "[i]Gerobatrachus[/i] is an extinct genus of amphibamid temnospondyl that lived in the Early Permian, approximately 290 million years ago (Ma). It possesses a large frog-like head and a salamander-like tail.
+"
+info_source = "Sources:
+Anderson, J. S., Reisz, R. R., Scott, D., Fröbisch, N. B., & Sumida, S. S. (2008). A stem batrachian from the Early Permian of Texas and the origin of frogs and salamanders. Nature, 453(7194), 515–518. https://doi.org/10.1038/nature06865"
+info_texture = ExtResource("1_lp8tb")

@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="InfoResource" load_steps=3 format=3 uid="uid://6b0jy4f70v5o"]
+
+[ext_resource type="Texture2D" uid="uid://b3qveggspgoef" path="res://assets/visual/dimetrodon_sprite.png" id="1_h41i5"]
+[ext_resource type="Script" path="res://resources/info/info_resource.gd" id="2_7cej7"]
+
+[resource]
+script = ExtResource("2_7cej7")
+info_name = "Dimetrodon"
+info_description = "[i]Dimetrodon[/i] was a quadrupedal, sail-backed synapsid. With its strong snout, massive skull and deep jaw, it was an apex predator during the Cisuralian period. Still, it preferred aquatic preys such as [i]Diplocaulus[/i].
+"
+info_source = "Sources:
+Brink, K. S., & Reisz, R. R. (2014). Hidden dental diversity in the oldest terrestrial apex predator Dimetrodon. Nature Communications, 5(1), 3269. https://doi.org/10.1038/ncomms4269
+"
+info_texture = ExtResource("1_h41i5")

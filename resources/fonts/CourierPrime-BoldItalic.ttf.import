@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dyjre5s4jaqsf"
-path="res://.godot/imported/SlacksideOne-Regular.ttf-ab9ad8c01297cbb5f7fbd0bf068706d4.fontdata"
+uid="uid://7uq23fqcr6cg"
+path="res://.godot/imported/CourierPrime-BoldItalic.ttf-615181a8cfdf7521a8adf939bc8c93b1.fontdata"
 
 [deps]
 
-source_file="res://resources/SlacksideOne-Regular.ttf"
-dest_files=["res://.godot/imported/SlacksideOne-Regular.ttf-ab9ad8c01297cbb5f7fbd0bf068706d4.fontdata"]
+source_file="res://resources/fonts/CourierPrime-BoldItalic.ttf"
+dest_files=["res://.godot/imported/CourierPrime-BoldItalic.ttf-615181a8cfdf7521a8adf939bc8c93b1.fontdata"]
 
 [params]
 

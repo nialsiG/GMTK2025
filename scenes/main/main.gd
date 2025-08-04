@@ -11,6 +11,13 @@ extends Node
 @onready var score_label: Label = %ScoreLabel
 @onready var max_score_label: Label = %MaxScoreLabel
 @onready var info_screen_button: TextureButton = $CanvasLayer/InfoScreenButton
+@onready var contrast_slider: HSlider = %ContrastSlider
+@onready var brightness_slider: HSlider = %BrightnessSlider
+@onready var music_slider: HSlider = %MusicSlider
+@onready var sfx_slider: HSlider = %SFXSlider
+@onready var master_volume_slider: HSlider = %MasterVolumeSlider
+@onready var world_environment: WorldEnvironment = $WorldEnvironment
+@onready var music_audio_stream_player = $MusicAudioStreamPlayer
 
 @onready var current_score: int = 0 
 @onready var max_score: int = 0
@@ -35,6 +42,9 @@ func _unhandled_input(event):
 
 func _ready():
 	StartMenu()
+	SetVolume()
+	SetBrightness()
+	SetContrast()
 	SignalManager.GameOver.connect(StartMenu)
 	SignalManager.AddPoints.connect(UpdateScore)
 	SignalManager.UnlockDimetrodon.connect(UnlockDimetrodon)
@@ -78,6 +88,17 @@ func UpdateScore(amount: int = 0):
 	if current_score >= max_score:
 		max_score_label.text = str(current_score)
 		max_score = current_score
+
+func SetVolume(global_volume: float = master_volume_slider.value, music_volume: float = music_slider.value, sfx_volume: float = sfx_slider.value):
+	GlobalVariables.global_volume = global_volume
+	music_audio_stream_player.volume_db = GlobalVariables.global_volume * music_volume
+	# sfx volume
+
+func SetBrightness(value: float = brightness_slider.value):
+	world_environment.environment.adjustment_brightness = value
+
+func SetContrast(value: float = contrast_slider.value):
+	world_environment.environment.adjustment_contrast = value
 
 func _on_options_button_pressed():
 	options_menu.visible = !options_menu.visible
@@ -138,3 +159,19 @@ func UnlockMamayocaris():
 	is_button_active = true
 	mamayocaris_unlocked = true
 	# add Mamayocaris to wiki
+
+
+func _on_contrast_slider_value_changed(value):
+	SetContrast()
+
+func _on_brightness_slider_value_changed(value):
+	SetBrightness()
+
+func _on_master_volume_slider_value_changed(value):
+	SetVolume()
+
+func _on_music_slider_value_changed(value):
+	SetVolume()
+
+func _on_sfx_slider_value_changed(value):
+	SetVolume()

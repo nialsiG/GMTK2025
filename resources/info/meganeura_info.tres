@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="InfoResource" load_steps=2 format=3 uid="uid://0xy2mm2tvrdk"]
+
+[ext_resource type="Script" path="res://resources/info/info_resource.gd" id="1_s7xsu"]
+
+[resource]
+script = ExtResource("1_s7xsu")
+info_name = "Meganeura"
+info_description = ""
+info_source = ""

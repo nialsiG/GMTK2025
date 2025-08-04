@@ -46,7 +46,7 @@ func _physics_process(delta):
 			velocity.y = - SPEED / 2
 
 	# Handle jump
-	if Input.is_action_just_pressed("ui_up") and player_state != PlayerState.SURFACE:
+	if Input.is_action_just_pressed("move_up") and player_state != PlayerState.SURFACE:
 		velocity.y = JUMP_VELOCITY
 		animated_head.play("going_up")
 		if animated_head_timer.is_stopped():
@@ -56,10 +56,8 @@ func _physics_process(delta):
 		
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	if input_dir.y > 0:
-		input_dir.y = 0
-	var direction = (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
+	var input_dir = Input.get_axis("move_left", "move_right")
+	var direction = (transform.basis * Vector3(input_dir, 0, 0)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
 	else:

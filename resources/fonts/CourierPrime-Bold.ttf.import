@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b0kobsenqqgwm"
-path="res://.godot/imported/TheGirlNextDoor-Regular.ttf-8377fe38a4274d44710fb391e35344d3.fontdata"
+uid="uid://4n6awh3ea4t7"
+path="res://.godot/imported/CourierPrime-Bold.ttf-e1d13cc7f4703d71f4b0b4f3f79c550d.fontdata"
 
 [deps]
 
-source_file="res://resources/TheGirlNextDoor-Regular.ttf"
-dest_files=["res://.godot/imported/TheGirlNextDoor-Regular.ttf-8377fe38a4274d44710fb391e35344d3.fontdata"]
+source_file="res://resources/fonts/CourierPrime-Bold.ttf"
+dest_files=["res://.godot/imported/CourierPrime-Bold.ttf-e1d13cc7f4703d71f4b0b4f3f79c550d.fontdata"]
 
 [params]
 

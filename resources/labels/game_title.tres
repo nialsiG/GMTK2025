@@ -1,7 +1,12 @@
 [gd_resource type="LabelSettings" load_steps=2 format=3 uid="uid://bye3vxwg60mt5"]
 
-[ext_resource type="FontFile" uid="uid://b0kobsenqqgwm" path="res://resources/TheGirlNextDoor-Regular.ttf" id="1_70dqy"]
+[ext_resource type="FontFile" uid="uid://b0kobsenqqgwm" path="res://resources/fonts/TheGirlNextDoor-Regular.ttf" id="1_rph2e"]
 
 [resource]
-font = ExtResource("1_70dqy")
+font = ExtResource("1_rph2e")
 font_size = 150
+outline_size = 11
+outline_color = Color(0.76, 0.2888, 0.57152, 1)
+shadow_size = 19
+shadow_color = Color(0.99, 0.3861, 0.74844, 0.647059)
+shadow_offset = Vector2(3, 3)
