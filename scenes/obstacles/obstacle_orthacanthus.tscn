@@ -1,18 +1,45 @@
-[gd_scene load_steps=4 format=3 uid="uid://cjrd38twoe8v8"]
+[gd_scene load_steps=9 format=3 uid="uid://cjrd38twoe8v8"]
 
 [ext_resource type="PackedScene" uid="uid://bf4vifu1knd7l" path="res://scenes/obstacles/obstacle.tscn" id="1_og3t4"]
-[ext_resource type="Texture2D" uid="uid://cbpm3puceyo33" path="res://assets/visual/orthacanthus.png" id="2_yr5rb"]
+[ext_resource type="Script" path="res://scenes/obstacles/orthocanthus_move_component.gd" id="3_qwng7"]
+[ext_resource type="Texture2D" uid="uid://ci7qittdxyeeg" path="res://assets/visual/orthacanthus/orthacanthus_frame1.png" id="3_sfhdf"]
+[ext_resource type="Texture2D" uid="uid://5wt6nbfxum2u" path="res://assets/visual/orthacanthus/orthacanthus_frame2.png" id="4_lwa47"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0x0e8"]
 transparency = 1
-albedo_texture = ExtResource("2_yr5rb")
+albedo_texture = ExtResource("3_sfhdf")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_658u6"]
+atlas = ExtResource("3_sfhdf")
+region = Rect2(0, 0, 600, 425)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xq0qy"]
+atlas = ExtResource("4_lwa47")
+region = Rect2(0, 0, 600, 425)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6vu47"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_658u6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xq0qy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [node name="Obstacle" instance=ExtResource("1_og3t4")]
 obstacle_type = 3
 
-[node name="Sprite3D" type="Sprite3D" parent="." index="0"]
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="." index="0"]
 material_override = SubResource("StandardMaterial3D_0x0e8")
-texture = ExtResource("2_yr5rb")
+sprite_frames = SubResource("SpriteFrames_6vu47")
 
-[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="." index="1"]
-polygon = PackedVector2Array(-0.625403, 1.55516, -0.545219, 0.981961, 0.0368691, 0.655524, 0.713803, 0.369412, 1.19797, -0.118544, 1.45275, -0.317951, 1.96175, -0.215233, 2.42618, -0.371368, 1.74786, -0.783425, 2.24096, -1.06761, 1.44179, -1.4484, 1.03038, -1.23554, 0.54796, -1.60661, -0.141704, -1.60551, -0.777732, -1.00479, -1.17578, -0.933576, -1.86464, -1.5126, -2.34633, -1.14031, -1.13678, -0.616081, -1.17643, -0.309072, -1.53142, -0.302934, -1.54841, -0.15674, -1.04397, -0.115357, -0.924683, 0.428382, -1.06111, 1.01137)
+[node name="MoveComponent" type="Node3D" parent="." index="1"]
+script = ExtResource("3_qwng7")
+
+[node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="." index="2"]
+polygon = PackedVector2Array(-0.0417216, -1.40741, -0.419999, -1.3796, -0.664767, -1.14596, -0.992978, -0.839998, -1.17099, -0.684237, -1.94423, -1.00132, -2.07218, -0.739866, -1.18212, -0.461721, -1.04304, 0.139072, -0.547946, 0.433906, -0.141854, 0.606356, 0.375496, 0.272582, 0.798276, -0.200264, 0.926223, -0.589667, 1.4102, -0.712051, 1.34344, -0.86225, 0.742647, -0.745429, 0.564634, -1.10145, 0.247549, -1.35178)

@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="InfoResource" load_steps=2 format=3 uid="uid://ouwlr5aht2yc"]
+[gd_resource type="Resource" script_class="InfoResource" load_steps=3 format=3 uid="uid://ouwlr5aht2yc"]
 
+[ext_resource type="Texture2D" uid="uid://mc6oi1bksib7" path="res://assets/visual/orthacanthus_sprite.png" id="1_l6b2g"]
 [ext_resource type="Script" path="res://resources/info/info_resource.gd" id="1_obw6j"]
 
 [resource]
@@ -7,3 +8,4 @@ script = ExtResource("1_obw6j")
 info_name = "Orthacanthus"
 info_description = ""
 info_source = ""
+info_texture = ExtResource("1_l6b2g")

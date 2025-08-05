@@ -1,4 +1,21 @@
-[gd_resource type="Theme" format=3 uid="uid://bflh17b8kclhy"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bflh17b8kclhy"]
+
+[ext_resource type="FontFile" uid="uid://dyjre5s4jaqsf" path="res://resources/fonts/SlacksideOne-Regular.ttf" id="1_l4n1o"]
+
+[sub_resource type="Gradient" id="Gradient_cyqin"]
+colors = PackedColorArray(0, 0, 0, 1, 0.52, 0.52, 0.52, 0.784314)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_rkex6"]
+gradient = SubResource("Gradient_cyqin")
+fill_to = Vector2(0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ara4x"]
+texture = SubResource("GradientTexture2D_rkex6")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_na0yy"]
 
 [resource]
 Button/font_sizes/font_size = 30
+Button/fonts/font = ExtResource("1_l4n1o")
+Button/styles/hover = SubResource("StyleBoxTexture_ara4x")
+Button/styles/normal = SubResource("StyleBoxEmpty_na0yy")

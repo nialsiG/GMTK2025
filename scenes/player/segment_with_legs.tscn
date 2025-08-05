@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://chy0piolcwixe"]
+
+[ext_resource type="PackedScene" uid="uid://bsjc4qvhmuoow" path="res://scenes/player/segment_body.tscn" id="1_ns8rn"]
+[ext_resource type="Material" uid="uid://dmtgskljx6utd" path="res://resources/materials/segment_with_legs_material_3d.tres" id="2_cb24d"]
+
+[node name="Segment" instance=ExtResource("1_ns8rn")]
+material_override = ExtResource("2_cb24d")

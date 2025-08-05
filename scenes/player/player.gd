@@ -49,6 +49,7 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("move_up") and player_state != PlayerState.SURFACE:
 		velocity.y = JUMP_VELOCITY
 		animated_head.play("going_up")
+		animated_head.material_override.albedo_texture = animated_head.sprite_frames.get_frame_texture("going_up", 0)
 		if animated_head_timer.is_stopped():
 			animated_head_timer.start()
 		else:
@@ -72,4 +73,5 @@ func _physics_process(delta):
 
 func _on_timer_timeout():
 	animated_head.play("default")
+	animated_head.material_override.albedo_texture = animated_head.sprite_frames.get_frame_texture("default", 0)
 	animated_head_timer.stop()

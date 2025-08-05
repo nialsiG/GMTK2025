@@ -32,6 +32,6 @@ func GetDistanceVector(a: Node3D, b: Node3D):
 	var y_diff = b.global_position.y - a.global_position.y
 	if y_diff > 0:
 		y_diff /= 3 
-	var vect = Vector3(x_diff, y_diff, 0)
+	var vect = Vector3(x_diff, y_diff, 0.1)
 	var result = vect.normalized()
 	return result

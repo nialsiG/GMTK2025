@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://bsjc4qvhmuoow"]
 
-[ext_resource type="Texture2D" uid="uid://cna0uxsmo2eks" path="res://assets/visual/player_body_01.png" id="1_401b7"]
+[ext_resource type="Material" uid="uid://b4evq64o60bta" path="res://resources/materials/segment_body_material_3d.tres" id="1_602s3"]
 [ext_resource type="Script" path="res://scenes/player/segment.gd" id="2_31835"]
 
 [node name="Segment" type="Sprite3D"]
-texture = ExtResource("1_401b7")
+material_override = ExtResource("1_602s3")
 script = ExtResource("2_31835")
 
 [node name="Timer" type="Timer" parent="."]
