@@ -18,6 +18,23 @@ func ReplaceInfo(info_resource: InfoResource):
 	info_rich_text_label.clear()
 	info_rich_text_label.append_text(info_resource.info_description)
 
+func ClickOn(button_type: String):
+	match button_type:
+		"Gerobatrachus":
+			ReplaceInfo(GEROBATRACHUS_INFO)
+		"Gnathorhiza":
+			ReplaceInfo(GNATHORHIZA_INFO)
+		"Meganeura":
+			ReplaceInfo(MEGANEURA_INFO)
+		"Mamayocaris":
+			ReplaceInfo(MAMAYOCARIS_INFO)
+		"Dimetrodon":
+			ReplaceInfo(DIMETRODON_INFO)
+		"Diplocaulus":
+			ReplaceInfo(DIPLOCAULUS_INFO)
+		"Orthacanthus":
+			ReplaceInfo(ORTHACANTHUS_INFO)
+
 func _on_gerobatrachus_button_pressed():
 	ReplaceInfo(GEROBATRACHUS_INFO)
 

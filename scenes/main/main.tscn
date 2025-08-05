@@ -1,10 +1,9 @@
-[gd_scene load_steps=31 format=3 uid="uid://c0unv0yhgcwao"]
+[gd_scene load_steps=35 format=3 uid="uid://c0unv0yhgcwao"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_sl07k"]
 [ext_resource type="AudioStream" uid="uid://dx6mxg8oyr4qd" path="res://assets/music/FIRST_SNOW_modified.mp3" id="2_0bul8"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="2_eh76i"]
 [ext_resource type="Texture2D" uid="uid://cnad0cgl6ax6u" path="res://assets/visual/background.png" id="3_6yg6n"]
-[ext_resource type="Texture2D" uid="uid://clqs5ee2vltco" path="res://assets/visual/icon.svg" id="3_a3a8d"]
 [ext_resource type="Script" path="res://scenes/procedural_generation/river_chunk_factory.gd" id="3_gb04c"]
 [ext_resource type="LabelSettings" uid="uid://bye3vxwg60mt5" path="res://resources/labels/game_title.tres" id="5_edcw7"]
 [ext_resource type="Theme" uid="uid://bflh17b8kclhy" path="res://resources/buttons/button_theme.tres" id="6_66ijs"]
@@ -15,11 +14,15 @@
 [ext_resource type="Texture2D" uid="uid://d3spk4b3quhdd" path="res://assets/visual/player_head_02.png" id="8_2limp"]
 [ext_resource type="PackedScene" uid="uid://bsjc4qvhmuoow" path="res://scenes/player/segment_1.tscn" id="9_by1mr"]
 [ext_resource type="LabelSettings" uid="uid://bncy4xxs382wq" path="res://resources/labels/settings_label.tres" id="13_kc4oo"]
+[ext_resource type="Texture2D" uid="uid://i3ewb7wrsbra" path="res://assets/visual/instructions.png" id="13_n50yl"]
 [ext_resource type="Shader" path="res://resources/shaders/higlight_button.gdshader" id="14_aymbh"]
 [ext_resource type="Script" path="res://scenes/main/info_screen.gd" id="15_bkdyg"]
+[ext_resource type="Theme" uid="uid://c4gyjgd1fptde" path="res://resources/panels/info_panel.tres" id="16_5n6h0"]
 [ext_resource type="LabelSettings" uid="uid://hl31c0w6ck74" path="res://resources/labels/info_title_label.tres" id="16_wb5bj"]
 [ext_resource type="Theme" uid="uid://dr8s6ubgsnayt" path="res://resources/labels/info_richtextlabel.tres" id="17_5jh8n"]
 [ext_resource type="Theme" uid="uid://bjkb4y7bigoms" path="res://resources/buttons/info_button_theme.tres" id="19_rr0pb"]
+[ext_resource type="Texture2D" uid="uid://ckyed4rxkrt6o" path="res://assets/visual/info_button.png" id="22_fv21q"]
+[ext_resource type="Texture2D" uid="uid://8jbk3wiotvqx" path="res://assets/visual/info_button_hover.png" id="23_ce0yv"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_2o2lu"]
 sky_top_color = Color(0.0114498, 1.60035e-06, 0.113532, 1)
@@ -70,7 +73,14 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_stdfw"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xls4k"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bv30q"]
+shader = ExtResource("14_aymbh")
+shader_parameter/glow_color = Color(1, 1, 1, 1)
+shader_parameter/glow_power = 2.0
+shader_parameter/glow_shift = 1.0
+shader_parameter/glow_radius = 4.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xaod5"]
 
@@ -208,7 +218,8 @@ label_settings = ExtResource("7_h8iyt")
 
 [node name="VSeparator" type="VSeparator" parent="CanvasLayer/Overlay/HBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 50
+theme_override_constants/separation = 200
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xls4k")
 
 [node name="Label2" type="Label" parent="CanvasLayer/Overlay/HBoxContainer"]
 layout_mode = 2
@@ -234,36 +245,87 @@ grow_vertical = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/StartMenu"]
 layout_mode = 1
-anchors_preset = 12
-anchor_top = 1.0
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -633.0
+offset_top = 139.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 alignment = 1
 
 [node name="GameTitleLabel" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 6
 text = "Cisuralian Cruise"
 label_settings = ExtResource("5_edcw7")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="InstructionsLabel" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer"]
+[node name="Control2" type="Control" parent="CanvasLayer/StartMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 40
+
+[node name="Instructions" type="Control" parent="CanvasLayer/StartMenu/VBoxContainer/Control2/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control2/MarginContainer/Instructions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="InstructionsLabel" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer/Control2/MarginContainer/Instructions/VBoxContainer"]
+unique_name_in_owner = true
+material = SubResource("ShaderMaterial_bv30q")
 layout_mode = 2
 size_flags_vertical = 6
 text = "Press any key to start"
 label_settings = ExtResource("6_hdddv")
 horizontal_alignment = 1
 
-[node name="Control" type="Panel" parent="CanvasLayer/StartMenu/VBoxContainer"]
-custom_minimum_size = Vector2(1500, 500)
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/StartMenu/VBoxContainer/Control2/MarginContainer/Instructions/VBoxContainer"]
+modulate = Color(0.4, 0.4, 0.4, 1)
+custom_minimum_size = Vector2(0, 400)
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/panel = SubResource("StyleBoxEmpty_stdfw")
+texture = ExtResource("13_n50yl")
+expand_mode = 1
+stretch_mode = 5
 
-[node name="OptionsMenu" type="Control" parent="CanvasLayer/StartMenu/VBoxContainer/Control"]
+[node name="OptionsButton" type="Button" parent="CanvasLayer/StartMenu"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -295.0
+offset_top = -75.0
+offset_right = -27.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("6_66ijs")
+text = "Options (O / back)"
+
+[node name="OptionsMenu" type="Control" parent="CanvasLayer/StartMenu"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
@@ -272,10 +334,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
+offset_top = 290.0
+offset_bottom = 290.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/StartMenu/OptionsMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -287,20 +351,20 @@ theme_override_constants/margin_top = 30
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 30
 
-[node name="GridContainer" type="GridContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer"]
 layout_mode = 2
 
-[node name="Contrast" type="HBoxContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer"]
+[node name="Contrast" type="HBoxContainer" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/Contrast"]
+[node name="Label" type="Label" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/Contrast"]
 layout_mode = 2
 text = "Contrast"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ContrastSlider" type="HSlider" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/Contrast"]
+[node name="ContrastSlider" type="HSlider" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/Contrast"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
@@ -309,17 +373,17 @@ max_value = 4.0
 step = 0.5
 value = 1.0
 
-[node name="Brightness" type="HBoxContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer"]
+[node name="Brightness" type="HBoxContainer" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/Brightness"]
+[node name="Label" type="Label" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/Brightness"]
 layout_mode = 2
 text = "Brightness"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BrightnessSlider" type="HSlider" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/Brightness"]
+[node name="BrightnessSlider" type="HSlider" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/Brightness"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
@@ -328,18 +392,18 @@ max_value = 4.0
 step = 0.5
 value = 1.5
 
-[node name="MasterVolume2" type="HBoxContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer"]
+[node name="MasterVolume2" type="HBoxContainer" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/MasterVolume2"]
+[node name="Label" type="Label" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/MasterVolume2"]
 layout_mode = 2
 text = "General Volume"
 label_settings = ExtResource("13_kc4oo")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MasterVolumeSlider" type="HSlider" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/MasterVolume2"]
+[node name="MasterVolumeSlider" type="HSlider" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/MasterVolume2"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
@@ -347,17 +411,17 @@ min_value = -5.0
 max_value = 5.0
 step = 0.5
 
-[node name="MusicVolume" type="HBoxContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer"]
+[node name="MusicVolume" type="HBoxContainer" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/MusicVolume"]
+[node name="Label" type="Label" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/MusicVolume"]
 layout_mode = 2
 text = "Music Volume"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MusicSlider" type="HSlider" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/MusicVolume"]
+[node name="MusicSlider" type="HSlider" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/MusicVolume"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
@@ -365,32 +429,23 @@ min_value = -5.0
 max_value = 5.0
 step = 0.5
 
-[node name="SfxVolume" type="HBoxContainer" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer"]
+[node name="SfxVolume" type="HBoxContainer" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label" type="Label" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/SfxVolume"]
+[node name="Label" type="Label" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/SfxVolume"]
 layout_mode = 2
 text = "SFX Volume"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="SFXSlider" type="HSlider" parent="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/SfxVolume"]
+[node name="SFXSlider" type="HSlider" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/SfxVolume"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
 min_value = -5.0
 max_value = 5.0
 step = 0.5
-
-[node name="OptionsButton" type="Button" parent="CanvasLayer/StartMenu"]
-layout_mode = 0
-offset_left = 1758.0
-offset_top = 996.0
-offset_right = 1880.0
-offset_bottom = 1046.0
-theme = ExtResource("6_66ijs")
-text = "Options"
 
 [node name="InfoScreen" type="Control" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -411,6 +466,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("16_5n6h0")
 
 [node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/InfoScreen/Panel"]
 layout_mode = 1
@@ -508,72 +564,99 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer"]
+[node name="VBoxInfoButtonContainer" type="VBoxContainer" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 alignment = 1
 
-[node name="GerobatrachusButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxContainer"]
+[node name="GerobatrachusButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("19_rr0pb")
 text = "Gerobatrachus"
 
-[node name="DimetrodonButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxContainer"]
+[node name="DimetrodonButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("19_rr0pb")
 text = "Dimetrodon"
 
-[node name="OrthacanthusButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxContainer"]
+[node name="OrthacanthusButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("19_rr0pb")
 text = "Orthacantus"
 
-[node name="DiplocaulusButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxContainer"]
+[node name="DiplocaulusButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("19_rr0pb")
 text = "Diplocaulus"
 
-[node name="MamayocarisButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxContainer"]
+[node name="MamayocarisButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("19_rr0pb")
 text = "Mamayocaris"
 
-[node name="MeganeuraButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxContainer"]
+[node name="MeganeuraButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("19_rr0pb")
 text = "Meganeura"
 
-[node name="GnathorhizaButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxContainer"]
+[node name="GnathorhizaButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("19_rr0pb")
 text = "Gnathorhiza"
 
-[node name="InfoScreenButton" type="TextureButton" parent="CanvasLayer"]
-process_mode = 3
-material = SubResource("ShaderMaterial_grc01")
+[node name="Label" type="Label" parent="CanvasLayer/InfoScreen"]
+layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -164.0
-offset_top = 38.0
-offset_right = -36.0
-offset_bottom = 166.0
+offset_left = -1460.0
+offset_top = 4.0
+offset_right = -1039.0
+offset_bottom = 121.0
 grow_horizontal = 0
+text = "Back to game →"
+label_settings = ExtResource("7_h8iyt")
+horizontal_alignment = 1
+
+[node name="InfoScreenButton" type="TextureButton" parent="CanvasLayer"]
+process_mode = 3
+material = SubResource("ShaderMaterial_grc01")
+anchors_preset = -1
+anchor_left = 0.441
+anchor_top = 0.001
+anchor_right = 0.539
+anchor_bottom = 0.001
+offset_left = 32.28
+offset_top = -1.08
+offset_right = -27.8801
+offset_bottom = 126.92
+grow_horizontal = 2
 size_flags_horizontal = 8
-texture_normal = ExtResource("3_a3a8d")
+texture_normal = ExtResource("22_fv21q")
+texture_pressed = ExtResource("22_fv21q")
+texture_hover = ExtResource("23_ce0yv")
+texture_focused = ExtResource("22_fv21q")
 
 [connection signal="timeout" from="3C/Player/ProceduralAnimationComponent/Timer" to="3C/Player/ProceduralAnimationComponent" method="_on_timer_timeout"]
 [connection signal="timeout" from="3C/Player/AnimatedHead/Timer" to="3C/Player" method="_on_timer_timeout"]
-[connection signal="value_changed" from="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/Contrast/ContrastSlider" to="." method="_on_contrast_slider_value_changed"]
-[connection signal="value_changed" from="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/Brightness/BrightnessSlider" to="." method="_on_brightness_slider_value_changed"]
-[connection signal="value_changed" from="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/MasterVolume2/MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
-[connection signal="value_changed" from="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/MusicVolume/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="CanvasLayer/StartMenu/VBoxContainer/Control/OptionsMenu/MarginContainer/GridContainer/SfxVolume/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="pressed" from="CanvasLayer/StartMenu/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxContainer/GerobatrachusButton" to="CanvasLayer/InfoScreen" method="_on_gerobatrachus_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxContainer/DimetrodonButton" to="CanvasLayer/InfoScreen" method="_on_dimetrodon_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxContainer/OrthacanthusButton" to="CanvasLayer/InfoScreen" method="_on_orthacanthus_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxContainer/DiplocaulusButton" to="CanvasLayer/InfoScreen" method="_on_diplocaulus_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxContainer/MamayocarisButton" to="CanvasLayer/InfoScreen" method="_on_mamayocaris_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxContainer/MeganeuraButton" to="CanvasLayer/InfoScreen" method="_on_meganeura_button_pressed"]
-[connection signal="pressed" from="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxContainer/GnathorhizaButton" to="CanvasLayer/InfoScreen" method="_on_gnathorhiza_button_pressed"]
+[connection signal="value_changed" from="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/Contrast/ContrastSlider" to="." method="_on_contrast_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/Brightness/BrightnessSlider" to="." method="_on_brightness_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/MasterVolume2/MasterVolumeSlider" to="." method="_on_master_volume_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/MusicVolume/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer/SfxVolume/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="pressed" from="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer/GerobatrachusButton" to="CanvasLayer/InfoScreen" method="_on_gerobatrachus_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer/DimetrodonButton" to="CanvasLayer/InfoScreen" method="_on_dimetrodon_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer/OrthacanthusButton" to="CanvasLayer/InfoScreen" method="_on_orthacanthus_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer/DiplocaulusButton" to="CanvasLayer/InfoScreen" method="_on_diplocaulus_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer/MamayocarisButton" to="CanvasLayer/InfoScreen" method="_on_mamayocaris_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer/MeganeuraButton" to="CanvasLayer/InfoScreen" method="_on_meganeura_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer/GnathorhizaButton" to="CanvasLayer/InfoScreen" method="_on_gnathorhiza_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/InfoScreenButton" to="." method="_on_info_screen_button_pressed"]

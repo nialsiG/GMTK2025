@@ -8,7 +8,7 @@ transparency = 1
 albedo_texture = ExtResource("2_yr5rb")
 
 [node name="Obstacle" instance=ExtResource("1_og3t4")]
-obstacle_type = 1
+obstacle_type = 3
 
 [node name="Sprite3D" type="Sprite3D" parent="." index="0"]
 material_override = SubResource("StandardMaterial3D_0x0e8")

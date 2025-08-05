@@ -13,6 +13,7 @@ radius = 0.638018
 height = 4.62843
 
 [node name="collectible" instance=ExtResource("1_683xx")]
+collectible_type = 2
 
 [node name="Sprite3D" type="Sprite3D" parent="." index="0"]
 transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)

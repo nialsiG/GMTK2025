@@ -6,16 +6,17 @@ class_name Collectible
 @export var collectible_points: int = 1
 
 func _on_body_entered(body):
-	SignalManager.AddPoints.emit(collectible_points)
-	match collectible_type:
-		Enums.CollectibleType.GEROBATRACHUS:
-			SignalManager.UnlockGerobatrachus.emit()
-		Enums.CollectibleType.GNATHORHIZA:
-			SignalManager.UnlockGnathorhiza.emit()
-		Enums.CollectibleType.MEGANEURA:
-			SignalManager.UnlockMeganeura.emit()
-		Enums.CollectibleType.MAMAYOCARIS:
-			SignalManager.UnlockMamayocaris.emit()
-	
-	await get_tree().create_timer(0.05).timeout
-	queue_free()
+	if body is CharacterBody3D:
+		SignalManager.AddPoints.emit(collectible_points)
+		match collectible_type:
+			Enums.CollectibleType.GEROBATRACHUS:
+				SignalManager.UnlockGerobatrachus.emit()
+			Enums.CollectibleType.GNATHORHIZA:
+				SignalManager.UnlockGnathorhiza.emit()
+			Enums.CollectibleType.MEGANEURA:
+				SignalManager.UnlockMeganeura.emit()
+			Enums.CollectibleType.MAMAYOCARIS:
+				SignalManager.UnlockMamayocaris.emit()
+		
+		await get_tree().create_timer(0.05).timeout
+		queue_free()

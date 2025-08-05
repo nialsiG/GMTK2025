@@ -8,6 +8,7 @@ enum ObstacleType {
 }
 
 enum CollectibleType {
+	PLANT,
 	GEROBATRACHUS,
 	GNATHORHIZA,
 	MEGANEURA,
