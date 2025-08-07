@@ -68,6 +68,7 @@ func _physics_process(delta):
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	GlobalVariables.player_global_position = global_position
 	
 	if play_sand_particles:
 		# TODO particles

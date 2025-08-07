@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://c0unv0yhgcwao"]
+[gd_scene load_steps=45 format=3 uid="uid://c0unv0yhgcwao"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_sl07k"]
 [ext_resource type="AudioStream" uid="uid://dx6mxg8oyr4qd" path="res://assets/music/FIRST_SNOW_modified.mp3" id="2_0bul8"]
@@ -57,8 +57,12 @@ alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("3_6yg6n")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_ql3fv"]
-size = Vector2(12, 12)
+size = Vector2(10, 12)
 orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_khiyw"]
+transparency = 1
+albedo_color = Color(0.497, 0.71, 0.69935, 0.72549)
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3pamf"]
 radius = 0.2615
@@ -132,7 +136,7 @@ autoplay = true
 environment = SubResource("Environment_0vbyx")
 
 [node name="Background" type="Sprite3D" parent="WorldEnvironment"]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, -30)
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 4, -30)
 material_override = SubResource("StandardMaterial3D_xk4ai")
 texture = ExtResource("3_6yg6n")
 
@@ -142,15 +146,16 @@ texture = ExtResource("3_6yg6n")
 script = ExtResource("3_gb04c")
 
 [node name="RiverChunk" parent="Environment/RiverChunkFactory" instance=ExtResource("5_0x55u")]
+visible = false
 
 [node name="UnderwaterShaderPlan" type="MeshInstance3D" parent="Environment/RiverChunkFactory"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.5)
 material_override = ExtResource("6_6po0o")
 mesh = SubResource("PlaneMesh_ql3fv")
 
-[node name="UnderwaterShaderPlan2" type="MeshInstance3D" parent="Environment/RiverChunkFactory/UnderwaterShaderPlan"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6, -4.52179)
-material_override = ExtResource("6_6po0o")
+[node name="PlainWaterPlan" type="MeshInstance3D" parent="Environment/RiverChunkFactory/UnderwaterShaderPlan"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6, -4.5)
+material_override = SubResource("StandardMaterial3D_khiyw")
 mesh = SubResource("PlaneMesh_ql3fv")
 skeleton = NodePath("../..")
 
@@ -159,6 +164,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
 [node name="Menu_Camera" type="Node3D" parent="3C"]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.58035, 0)
 
 [node name="Camera3D" type="Camera3D" parent="3C/Menu_Camera"]
 transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, 3)
@@ -166,8 +172,7 @@ transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195
 [node name="SpotLight3D" type="SpotLight3D" parent="3C/Menu_Camera"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 light_color = Color(0.896694, 0.85401, 0.80025, 1)
-light_energy = 4.0
-light_volumetric_fog_energy = 0.1
+light_energy = 8.0
 spot_range = 30.0
 spot_angle = 60.0
 spot_angle_attenuation = 4.0

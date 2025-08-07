@@ -2,27 +2,26 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nxx26a4a5fjp"
-path.s3tc="res://.godot/imported/diplauculus_magnicornis.png-0978efbd4ff5770c5aad63d369ca0309.s3tc.ctex"
+uid="uid://ill2o764eofx"
+path="res://.godot/imported/diplocaulus_magnicornis_sprite.png-b5813645f206bfa5299fe01bda20a8e3.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/visual/diplauculus_magnicornis.png"
-dest_files=["res://.godot/imported/diplauculus_magnicornis.png-0978efbd4ff5770c5aad63d369ca0309.s3tc.ctex"]
+source_file="res://assets/visual/diplocaulus_magnicornis_sprite.png"
+dest_files=["res://.godot/imported/diplocaulus_magnicornis_sprite.png-b5813645f206bfa5299fe01bda20a8e3.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -32,4 +31,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1

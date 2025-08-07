@@ -6,6 +6,7 @@ const EMPTY_CHUNK = preload("res://scenes/procedural_generation/empty_chunk.tscn
 # ...obstacles
 const OBSTACLE_DIMETRODON = preload("res://scenes/obstacles/obstacle_dimetrodon.tscn")
 const OBSTACLE_ORTHACANTHUS = preload("res://scenes/obstacles/obstacle_orthacanthus.tscn")
+const OBSTACLE_DIPLOCAULUS = preload("res://scenes/obstacles/obstacle_diplocaulus.tscn")
 
 # ...collectibles
 const GEROBATRACHUS_COLLECTIBLE = preload("res://scenes/collectibles/gerobatrachus_collectible.tscn")
@@ -26,7 +27,7 @@ func SpawnObstacle(parent, type: Enums.ObstacleType, origin: Vector3):
 		Enums.ObstacleType.DIMETRODON:
 			obstacle = OBSTACLE_DIMETRODON.instantiate()
 		Enums.ObstacleType.DIPLOCAULUS:
-			pass
+			obstacle = OBSTACLE_DIPLOCAULUS.instantiate()
 		Enums.ObstacleType.ORTHACANTHUS:
 			obstacle = OBSTACLE_ORTHACANTHUS.instantiate()
 	obstacle.position = origin
@@ -56,8 +57,8 @@ func BuildNewChunk(origin: Vector3, is_empty = false):
 	if is_empty or !GlobalVariables.can_spawn:
 		return
 	
-	var index = randi_range(0,1)
-	#var index = 1
+	var index = randi_range(0,2)
+	#var index = 2
 	match index:
 		0:
 			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(1.8,8,4))
@@ -70,8 +71,7 @@ func BuildNewChunk(origin: Vector3, is_empty = false):
 			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(2,4,-8))
 			pass
 		2:
-			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(3,3,-5))
-			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(0,6,-7))
+			SpawnObstacle(instance, Enums.ObstacleType.DIPLOCAULUS, Vector3(0,-2.5,0))
 			pass
 		3:
 			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(3,3,-5))

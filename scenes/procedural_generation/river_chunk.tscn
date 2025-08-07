@@ -1,6 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://25ie1cikwp5a"]
+[gd_scene load_steps=9 format=3 uid="uid://25ie1cikwp5a"]
 
 [ext_resource type="Script" path="res://scenes/procedural_generation/river_chunk.gd" id="1_q0xem"]
+[ext_resource type="Texture2D" uid="uid://dq333tdj50aoh" path="res://assets/visual/fern.png" id="2_aqm1b"]
+[ext_resource type="Material" uid="uid://c50vai2obywti" path="res://resources/materials/fern_material.tres" id="2_quapr"]
+[ext_resource type="Material" uid="uid://ctwa342o2p7ka" path="res://resources/materials/dimetrodon_material.tres" id="4_wobal"]
+[ext_resource type="Texture2D" uid="uid://cvdayux5cx6cm" path="res://assets/visual/dimetrodon.png" id="5_nl1et"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a8gud"]
 albedo_color = Color(0.23, 0.0736, 0.0762066, 1)
@@ -28,7 +32,7 @@ mesh = SubResource("PlaneMesh_x8cn2")
 skeleton = NodePath("../../../Bottom")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="LeftBank/RigidBody3D/MeshInstance3D"]
-transform = Transform3D(0.0868241, -0.992404, 0.0871557, 0.996195, 0.0871558, 0, -0.00759613, 0.0868241, 0.996195, -5.95825, -6, 0)
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, -5.95, -6, 0)
 mesh = SubResource("PlaneMesh_x8cn2")
 skeleton = NodePath("../../../../Bottom")
 
@@ -49,7 +53,7 @@ mesh = SubResource("PlaneMesh_x8cn2")
 skeleton = NodePath("../../../Bottom")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RightBank/RigidBody3D/MeshInstance3D"]
-transform = Transform3D(0.0868241, 0.992404, -0.0871557, -0.996195, 0.0871558, 0, 0.00759613, 0.0868241, 0.996195, 5.85999, -6, -0.0837312)
+transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 5.95, -6, 0)
 mesh = SubResource("PlaneMesh_x8cn2")
 skeleton = NodePath("../../../Bottom")
 
@@ -71,3 +75,75 @@ skeleton = NodePath("../..")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Bottom/RigidBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.522587, -5)
 shape = SubResource("BoxShape3D_12l6c")
+
+[node name="FernsLeft" type="Node3D" parent="."]
+
+[node name="FernSprite" type="Sprite3D" parent="FernsLeft"]
+transform = Transform3D(0.83685, 0.547432, 0, -0.547432, 0.83685, 0, 0, 0, 1, -5.11273, 8.50322, 1.32434)
+material_override = ExtResource("2_quapr")
+texture = ExtResource("2_aqm1b")
+
+[node name="FernSprite2" type="Sprite3D" parent="FernsLeft"]
+transform = Transform3D(0.999999, -0.00105178, 0.000532517, 0.00105324, 0.999996, -0.00274152, -0.00052962, 0.00274208, 0.999996, -6.37372, 9.50157, -1.17053)
+material_override = ExtResource("2_quapr")
+texture = ExtResource("2_aqm1b")
+
+[node name="FernSprite3" type="Sprite3D" parent="FernsLeft"]
+transform = Transform3D(0.926994, -0.375076, 0, 0.375076, 0.926994, 0, 0, 0, 1, -5.96747, 7.55589, -2.9411)
+material_override = ExtResource("2_quapr")
+texture = ExtResource("2_aqm1b")
+
+[node name="FernSprite4" type="Sprite3D" parent="FernsLeft"]
+transform = Transform3D(0.5229, 0.852394, 0, -0.852394, 0.5229, 0, 0, 0, 1, -6.72162, 9.35515, -3.75824)
+material_override = ExtResource("2_quapr")
+texture = ExtResource("2_aqm1b")
+
+[node name="FernSprite5" type="Sprite3D" parent="FernsLeft"]
+transform = Transform3D(0.992276, 0.124052, 0, -0.124052, 0.992276, 0, 0, 0, 1, -5.55634, 8.89641, -6.71497)
+material_override = ExtResource("2_quapr")
+texture = ExtResource("2_aqm1b")
+
+[node name="FernSprite6" type="Sprite3D" parent="FernsLeft"]
+transform = Transform3D(0.924333, 0.381587, 0, -0.381587, 0.924333, 0, 0, 0, 1, -5.11273, 8.50322, -8.69612)
+material_override = ExtResource("2_quapr")
+texture = ExtResource("2_aqm1b")
+
+[node name="FernsRight" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.9494, -0.325699, -0.495239)
+
+[node name="FernSprite" type="Sprite3D" parent="FernsRight"]
+transform = Transform3D(0.83685, 0.547432, 0, -0.547432, 0.83685, 0, 0, 0, 1, -5.11273, 8.50322, 1.32434)
+material_override = ExtResource("2_quapr")
+texture = ExtResource("2_aqm1b")
+
+[node name="FernSprite2" type="Sprite3D" parent="FernsRight"]
+transform = Transform3D(0.999999, -0.00105178, 0.000532517, 0.00105324, 0.999996, -0.00274152, -0.00052962, 0.00274208, 0.999996, -6.37372, 9.50157, -1.17053)
+material_override = ExtResource("2_quapr")
+texture = ExtResource("2_aqm1b")
+
+[node name="FernSprite3" type="Sprite3D" parent="FernsRight"]
+transform = Transform3D(0.926994, -0.375076, 0, 0.375076, 0.926994, 0, 0, 0, 1, -5.96747, 7.55589, -2.9411)
+material_override = ExtResource("2_quapr")
+texture = ExtResource("2_aqm1b")
+
+[node name="FernSprite4" type="Sprite3D" parent="FernsRight"]
+transform = Transform3D(0.5229, 0.852394, 0, -0.852394, 0.5229, 0, 0, 0, 1, -6.72162, 9.35515, -3.75824)
+material_override = ExtResource("2_quapr")
+texture = ExtResource("2_aqm1b")
+
+[node name="FernSprite5" type="Sprite3D" parent="FernsRight"]
+transform = Transform3D(0.992276, 0.124052, 0, -0.124052, 0.992276, 0, 0, 0, 1, -5.55634, 8.89641, -6.71497)
+material_override = ExtResource("2_quapr")
+texture = ExtResource("2_aqm1b")
+
+[node name="FernSprite6" type="Sprite3D" parent="FernsRight"]
+transform = Transform3D(0.924333, 0.381587, 0, -0.381587, 0.924333, 0, 0, 0, 1, -5.11273, 8.50322, -8.69612)
+material_override = ExtResource("2_quapr")
+texture = ExtResource("2_aqm1b")
+
+[node name="Dimetrodon" type="Node3D" parent="."]
+
+[node name="DimetrodonSprite3D" type="Sprite3D" parent="Dimetrodon"]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, 1, -7.41316, 9.60101, -1.10376)
+material_override = ExtResource("4_wobal")
+texture = ExtResource("5_nl1et")

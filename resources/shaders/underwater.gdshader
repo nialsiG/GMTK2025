@@ -2,19 +2,20 @@ shader_type spatial;
 render_mode unshaded, fog_disabled;
 
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture;
+uniform vec3 water_color:source_color;
 
 void fragment() {
 	vec2 uv = SCREEN_UV;
-	
+
 	float frequency = 10.0;
 	float amplitude = 0.0005;
 	float speed = 20.0 * sin(TIME);
 	float wave = sin(uv.y * frequency) * speed * amplitude;
-	
+
 	uv.x += wave;
-	
-	ALBEDO = texture(SCREEN_TEXTURE, uv).rgb;
-	//ALPHA = 0.0;
+
+	ALBEDO = texture(SCREEN_TEXTURE, uv).rgb + water_color;
+	ALPHA = 0.1;
 }
 
 //void light() {

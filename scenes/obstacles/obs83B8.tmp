@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://tdw2wjgu4vsm"]
 
 [ext_resource type="PackedScene" uid="uid://bf4vifu1knd7l" path="res://scenes/obstacles/obstacle.tscn" id="1_r4546"]
-[ext_resource type="Texture2D" uid="uid://nxx26a4a5fjp" path="res://assets/visual/diplocaulus_magnicornis.png" id="3_1ln2i"]
-[ext_resource type="Texture2D" uid="uid://cfbj1rwnmasuo" path="res://assets/visual/diplocaulus_magnicornis_02.png" id="3_akfj8"]
+[ext_resource type="Texture2D" uid="uid://nxx26a4a5fjp" path="res://assets/visual/diplauculus_magnicornis.png" id="3_1ln2i"]
+[ext_resource type="Texture2D" uid="uid://cfbj1rwnmasuo" path="res://assets/visual/diplauculus_magnicornis_02.png" id="3_akfj8"]
 [ext_resource type="Material" uid="uid://cmm61xdat7qd5" path="res://resources/materials/diplocaulus_ambush_material.tres" id="3_jttfb"]
 [ext_resource type="Script" path="res://scenes/obstacles/diplocaulus_move_component.gd" id="5_4e2if"]
 

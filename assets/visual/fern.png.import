@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xs5mher3owbw"
-path.s3tc="res://.godot/imported/orthacanthus_frame4.png-4a036dff3094db704f62ecad600244d5.s3tc.ctex"
+uid="uid://dq333tdj50aoh"
+path.s3tc="res://.godot/imported/fern.png-2f27ced59968c284b1eb90a646185308.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/visual/orthacanthus/orthacanthus_frame4.png"
-dest_files=["res://.godot/imported/orthacanthus_frame4.png-4a036dff3094db704f62ecad600244d5.s3tc.ctex"]
+source_file="res://assets/visual/fern.png"
+dest_files=["res://.godot/imported/fern.png-2f27ced59968c284b1eb90a646185308.s3tc.ctex"]
 
 [params]
 
