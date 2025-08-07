@@ -24,7 +24,7 @@ func ClickOn(button_type: String):
 			ReplaceInfo(GEROBATRACHUS_INFO)
 		"Gnathorhiza":
 			ReplaceInfo(GNATHORHIZA_INFO)
-		"Meganeura":
+		"Meganeuropsis":
 			ReplaceInfo(MEGANEURA_INFO)
 		"Mamayocaris":
 			ReplaceInfo(MAMAYOCARIS_INFO)

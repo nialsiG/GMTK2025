@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://cy8t2l74xj0k5"]
+
+[ext_resource type="Texture2D" uid="uid://dfvba2thdrc65" path="res://assets/visual/meganeuropsis_body.png" id="1_y2w4e"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_y2w4e")

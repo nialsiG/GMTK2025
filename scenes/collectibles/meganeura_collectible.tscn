@@ -1,28 +1,38 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7jmc03o6p2ng"]
+[gd_scene load_steps=10 format=3 uid="uid://c7jmc03o6p2ng"]
 
 [ext_resource type="PackedScene" uid="uid://ddwksuod3o1um" path="res://scenes/collectibles/collectible.tscn" id="1_3xr0b"]
-[ext_resource type="Texture2D" uid="uid://csdmymg3nmura" path="res://assets/visual/meganeura.png" id="2_qp3j3"]
+[ext_resource type="Material" uid="uid://cy8t2l74xj0k5" path="res://resources/materials/meganeuropsis_material.tres" id="2_kcbn7"]
 [ext_resource type="Script" path="res://scenes/collectibles/meganeura_move_component.gd" id="3_gf3dt"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44ryi"]
-transparency = 1
-albedo_texture = ExtResource("2_qp3j3")
+[ext_resource type="Texture2D" uid="uid://dfvba2thdrc65" path="res://assets/visual/meganeuropsis_body.png" id="3_wwd1w"]
+[ext_resource type="Material" uid="uid://d21ar2260x3pn" path="res://resources/materials/backwing_material.tres" id="4_qa1uq"]
+[ext_resource type="Texture2D" uid="uid://cpjoikpl7r8qj" path="res://assets/visual/meganeuropsis_backwing.png" id="5_ywjpf"]
+[ext_resource type="Material" uid="uid://b5tr3lrdk4ftp" path="res://resources/materials/forewing_material.tres" id="6_7juh7"]
+[ext_resource type="Texture2D" uid="uid://dk8vk1af7j5jc" path="res://assets/visual/meganeuropsis_forewing.png" id="7_dxj15"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hlhgf"]
-radius = 0.403537
-height = 1.24978
+radius = 0.573683
+height = 4.41131
 
 [node name="collectible" instance=ExtResource("1_3xr0b")]
 collectible_type = 3
 
-[node name="Sprite3D" type="Sprite3D" parent="." index="0"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_44ryi")
-texture = ExtResource("2_qp3j3")
+[node name="BackwingSprite" type="Sprite3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.358, 1.381, -0.1)
+material_override = ExtResource("4_qa1uq")
+texture = ExtResource("5_ywjpf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
+[node name="Sprite3D" type="Sprite3D" parent="." index="1"]
+material_override = ExtResource("2_kcbn7")
+texture = ExtResource("3_wwd1w")
+
+[node name="ForewingSprite" type="Sprite3D" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.358, 1.381, 0.1)
+material_override = ExtResource("6_7juh7")
+texture = ExtResource("7_dxj15")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." index="3"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_hlhgf")
 
-[node name="MoveComponent" type="Node3D" parent="." index="2"]
+[node name="MoveComponent" type="Node3D" parent="." index="4"]
 script = ExtResource("3_gf3dt")

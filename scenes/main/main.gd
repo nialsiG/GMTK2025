@@ -208,8 +208,8 @@ func UnlockMeganeura():
 	is_button_active = true
 	meganeura_unlocked = true
 	# add Meganeura to wiki
-	UnlockButton(meganeura_button, "Meganeura")
-	info_button_focus = "Meganeura"
+	UnlockButton(meganeura_button, "Meganeuropsis")
+	info_button_focus = "Meganeuropsis"
 
 func UnlockMamayocaris():
 	if mamayocaris_unlocked:

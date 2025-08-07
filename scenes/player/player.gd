@@ -26,17 +26,16 @@ func _physics_process(delta):
 				velocity.y = 0
 				player_state = PlayerState.SURFACE
 				# play surface splash sound
-				SignalManager.PlayerAtSurface.emit(true)
 			if is_on_floor():
 				player_state = PlayerState.BED
 				play_sand_particles = true
 		PlayerState.SURFACE:
+			SignalManager.PlayerAtSurface.emit()
 			# Handle dive
 			if Input.is_action_just_pressed("move_down") and player_state == PlayerState.SURFACE:
 				velocity.y = -JUMP_VELOCITY
 				player_state = PlayerState.SWIMMING
 				# play surface splash sound
-				SignalManager.PlayerAtSurface.emit(false)
 		PlayerState.BED:
 			if !is_on_floor():
 				player_state = PlayerState.SWIMMING

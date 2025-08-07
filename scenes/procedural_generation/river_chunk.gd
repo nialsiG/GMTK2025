@@ -5,6 +5,10 @@ const SPEED = 5
 
 # runtime variables
 @onready var is_active: bool = true
+@onready var dimetrodon_sprite_3d = $Dimetrodon/DimetrodonSprite3D
+
+func _ready():
+	dimetrodon_sprite_3d.visible = false
 
 func _process(delta):
 	position += Vector3 (0, 0, SPEED * delta)
@@ -14,3 +18,6 @@ func _process(delta):
 	if !is_active:
 		await get_tree().create_timer(0.05).timeout
 		queue_free()
+
+func ShowDimetrodon():
+	dimetrodon_sprite_3d.visible = true

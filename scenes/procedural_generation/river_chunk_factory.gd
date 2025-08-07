@@ -42,9 +42,9 @@ func SpawnCollectible(parent, type: Enums.CollectibleType, origin: Vector3):
 		Enums.CollectibleType.GNATHORHIZA:
 			collectible = GNATHORHIZA_COLLECTIBLE.instantiate()
 		Enums.CollectibleType.MEGANEURA:
-			pass
+			collectible = MEGANEURA_COLLECTIBLE.instantiate()
 		Enums.CollectibleType.MAMAYOCARIS:
-			pass
+			collectible = MAMAYOCARIS_COLLECTIBLE.instantiate()
 	collectible.position = origin
 	parent.add_child(collectible)
 	SignalManager.GameOver.connect(collectible.queue_free)
@@ -57,8 +57,8 @@ func BuildNewChunk(origin: Vector3, is_empty = false):
 	if is_empty or !GlobalVariables.can_spawn:
 		return
 	
-	var index = randi_range(0,2)
-	#var index = 2
+	var index = randi_range(0,5)
+	#index = 3
 	match index:
 		0:
 			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(1.8,8,4))
@@ -74,20 +74,20 @@ func BuildNewChunk(origin: Vector3, is_empty = false):
 			SpawnObstacle(instance, Enums.ObstacleType.DIPLOCAULUS, Vector3(0,-2.5,0))
 			pass
 		3:
-			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(3,3,-5))
-			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(0,8,-10))
-			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(0,6,-7))
+			SpawnCollectible(instance, Enums.CollectibleType.MEGANEURA, Vector3(1.8,8,4))
+			instance.ShowDimetrodon()
 			pass
 		4:
-			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(4,8,-5))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(0,2,4))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(2,1,0))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(-2,2,-4))
 			pass
 		5:
-			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(-2,5,-5))
-			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(4,2,-7))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(0,3,4))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(-4,4,0))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(4,5,-4))
 			pass
 		6:
-			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(-6,3,-5))
-			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(-3,2,-3))
 			pass
 		7:
 			pass

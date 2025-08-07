@@ -1,7 +1,7 @@
 extends Node
 
 signal GameOver
-signal PlayerAtSurface(boolean: bool)
+signal PlayerAtSurface
 signal NewRiverChunk(origin: Vector3)
 
 # points

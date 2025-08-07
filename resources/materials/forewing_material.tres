@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://b5tr3lrdk4ftp"]
+
+[ext_resource type="Texture2D" uid="uid://dk8vk1af7j5jc" path="res://assets/visual/meganeuropsis_forewing.png" id="1_6ear6"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_6ear6")

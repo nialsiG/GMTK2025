@@ -1,11 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b2bhwjlu25c3u"]
+[gd_scene load_steps=6 format=3 uid="uid://b2bhwjlu25c3u"]
 
 [ext_resource type="PackedScene" uid="uid://ddwksuod3o1um" path="res://scenes/collectibles/collectible.tscn" id="1_fb50p"]
-[ext_resource type="Texture2D" uid="uid://c2bqihl87417h" path="res://assets/visual/gnathorhiza.png" id="2_ev6e0"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_44ryi"]
-transparency = 1
-albedo_texture = ExtResource("2_ev6e0")
+[ext_resource type="Material" uid="uid://dbc4rvwo06c53" path="res://resources/materials/mamayocaris_material.tres" id="2_vvr5x"]
+[ext_resource type="Texture2D" uid="uid://bxla56a818gmg" path="res://assets/visual/mamayocaris.png" id="3_yo1ri"]
+[ext_resource type="Script" path="res://scenes/collectibles/mamayocaris_move_component.gd" id="4_kts6i"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hlhgf"]
 radius = 0.638018
@@ -15,10 +13,12 @@ height = 4.62843
 collectible_type = 4
 
 [node name="Sprite3D" type="Sprite3D" parent="." index="0"]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_44ryi")
-texture = ExtResource("2_ev6e0")
+material_override = ExtResource("2_vvr5x")
+texture = ExtResource("3_yo1ri")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." index="1"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_hlhgf")
+
+[node name="MoveComponent" type="Node3D" parent="." index="2"]
+script = ExtResource("4_kts6i")

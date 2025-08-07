@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="InfoResource" load_steps=2 format=3 uid="uid://c4pvd0b0ppoyv"]
+[gd_resource type="Resource" script_class="InfoResource" load_steps=3 format=3 uid="uid://c4pvd0b0ppoyv"]
 
 [ext_resource type="Script" path="res://resources/info/info_resource.gd" id="1_gp5py"]
+[ext_resource type="Texture2D" uid="uid://cidaxs84h8b1y" path="res://assets/visual/mamayocaris_artwork.png" id="1_xrukl"]
 
 [resource]
 script = ExtResource("1_gp5py")
 info_name = "Mamayocaris"
 info_description = ""
 info_source = ""
+info_texture = ExtResource("1_xrukl")

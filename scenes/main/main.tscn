@@ -1,11 +1,10 @@
-[gd_scene load_steps=45 format=3 uid="uid://c0unv0yhgcwao"]
+[gd_scene load_steps=44 format=3 uid="uid://c0unv0yhgcwao"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_sl07k"]
 [ext_resource type="AudioStream" uid="uid://dx6mxg8oyr4qd" path="res://assets/music/FIRST_SNOW_modified.mp3" id="2_0bul8"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="2_eh76i"]
 [ext_resource type="Texture2D" uid="uid://cnad0cgl6ax6u" path="res://assets/visual/background.png" id="3_6yg6n"]
 [ext_resource type="Script" path="res://scenes/procedural_generation/river_chunk_factory.gd" id="3_gb04c"]
-[ext_resource type="PackedScene" uid="uid://25ie1cikwp5a" path="res://scenes/procedural_generation/river_chunk.tscn" id="5_0x55u"]
 [ext_resource type="LabelSettings" uid="uid://bye3vxwg60mt5" path="res://resources/labels/game_title.tres" id="5_edcw7"]
 [ext_resource type="Material" uid="uid://xfncs8kp8pb7" path="res://resources/materials/underwater_shader_material.tres" id="6_6po0o"]
 [ext_resource type="Theme" uid="uid://bflh17b8kclhy" path="res://resources/buttons/button_theme.tres" id="6_66ijs"]
@@ -56,13 +55,13 @@ alpha_scissor_threshold = 0.5
 alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("3_6yg6n")
 
-[sub_resource type="PlaneMesh" id="PlaneMesh_ql3fv"]
-size = Vector2(10, 12)
-orientation = 2
-
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_khiyw"]
 transparency = 1
 albedo_color = Color(0.497, 0.71, 0.69935, 0.72549)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ql3fv"]
+size = Vector2(10, 12)
+orientation = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3pamf"]
 radius = 0.2615
@@ -145,19 +144,15 @@ texture = ExtResource("3_6yg6n")
 [node name="RiverChunkFactory" type="Node" parent="Environment"]
 script = ExtResource("3_gb04c")
 
-[node name="RiverChunk" parent="Environment/RiverChunkFactory" instance=ExtResource("5_0x55u")]
-visible = false
+[node name="PlainWaterPlan" type="MeshInstance3D" parent="Environment/RiverChunkFactory"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 8, -5)
+material_override = SubResource("StandardMaterial3D_khiyw")
+mesh = SubResource("PlaneMesh_ql3fv")
 
 [node name="UnderwaterShaderPlan" type="MeshInstance3D" parent="Environment/RiverChunkFactory"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.5)
 material_override = ExtResource("6_6po0o")
 mesh = SubResource("PlaneMesh_ql3fv")
-
-[node name="PlainWaterPlan" type="MeshInstance3D" parent="Environment/RiverChunkFactory/UnderwaterShaderPlan"]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6, -4.5)
-material_override = SubResource("StandardMaterial3D_khiyw")
-mesh = SubResource("PlaneMesh_ql3fv")
-skeleton = NodePath("../..")
 
 [node name="3C" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
@@ -167,12 +162,12 @@ unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.58035, 0)
 
 [node name="Camera3D" type="Camera3D" parent="3C/Menu_Camera"]
-transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, 3)
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.610968, 3)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="3C/Menu_Camera"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.675015, 4.30595)
 light_color = Color(0.896694, 0.85401, 0.80025, 1)
-light_energy = 8.0
+light_energy = 4.0
 spot_range = 30.0
 spot_angle = 60.0
 spot_angle_attenuation = 4.0
@@ -182,14 +177,14 @@ unique_name_in_owner = true
 script = ExtResource("2_eh76i")
 
 [node name="Camera3D" type="Camera3D" parent="3C/Player"]
-transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, 3)
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.0871557, 0, -0.0871557, 0.996195, 0, 0.5, 2.20903)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="3C/Player"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0.0213467, 0)
 shape = SubResource("CapsuleShape3D_3pamf")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="3C/Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 3.2)
 light_color = Color(0.896694, 0.85401, 0.80025, 1)
 light_energy = 4.0
 light_volumetric_fog_energy = 0.1
@@ -677,7 +672,7 @@ text = "Mamayocaris"
 unique_name_in_owner = true
 layout_mode = 2
 theme = ExtResource("19_rr0pb")
-text = "Meganeura"
+text = "Meganeuropsis"
 
 [node name="GnathorhizaButton" type="Button" parent="CanvasLayer/InfoScreen/Panel/MarginContainer/HBoxContainer/SelectionPanel/MarginContainer/VBoxInfoButtonContainer"]
 unique_name_in_owner = true

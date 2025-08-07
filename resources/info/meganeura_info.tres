@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="InfoResource" load_steps=2 format=3 uid="uid://0xy2mm2tvrdk"]
+[gd_resource type="Resource" script_class="InfoResource" load_steps=3 format=3 uid="uid://0xy2mm2tvrdk"]
 
+[ext_resource type="Texture2D" uid="uid://c7i8t0h014nph" path="res://assets/visual/meganeuropsis_artwork.png" id="1_ath42"]
 [ext_resource type="Script" path="res://resources/info/info_resource.gd" id="1_s7xsu"]
 
 [resource]
 script = ExtResource("1_s7xsu")
-info_name = "Meganeura"
-info_description = ""
+info_name = "Meganeuropsis"
+info_description = "Although [i]Meganeuropsis[/i] looks like a dragonfly, it actually belongs to the now extinct order of the 'griffinflies' (Meganisoptera). Like dragonflies, it was a predator. With a body length of 43cm and an estimated wingspan of 71cm, [i]Meganeuropsis permiana[/i] is one of the largest insects to have roamed the sky! "
 info_source = ""
+info_texture = ExtResource("1_ath42")

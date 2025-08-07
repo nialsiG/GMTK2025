@@ -2,23 +2,53 @@ extends Node3D
 
 enum state {
 	IDLE,
-	FLYING
+	FLEEING
 }
 
-const SPEED = 5
+const SPEED = 3.0
+const Z_THRESHOLD = 3.0
 
-@onready var current_state: state = state.IDLE
+# nodes
+@onready var parent = $".."
+@onready var sprite_3d = $"../Sprite3D"
+@onready var backwing_sprite = $"../BackwingSprite"
+@onready var forewing_sprite = $"../ForewingSprite"
+
+var current_state: state = state.IDLE
+var timer = 0.0
+var fly_speed = 5.0
+var scale_factor = -1.0
+var initial_wing_position: float
 
 func _ready():
+	initial_wing_position = backwing_sprite.position.y
 	SignalManager.PlayerAtSurface.connect(Fly)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _physics_process(delta):
+	backwing_sprite.scale.y += scale_factor * fly_speed * delta
+	forewing_sprite.scale.y += scale_factor * fly_speed * delta
+	backwing_sprite.position.y = initial_wing_position * backwing_sprite.scale.y
+	forewing_sprite.position.y = initial_wing_position * forewing_sprite.scale.y
+	if backwing_sprite.scale.y < 0.2 or backwing_sprite.scale.y > 1.0:
+		scale_factor *= -1
+	
+	var distance = GlobalVariables.player_global_position - parent.global_position
+	# state machine
 	match current_state:
 		state.IDLE:
 			pass
-		state.FLYING:
-			global_position += Vector3(delta * SPEED, delta * SPEED / 2, 0)
+		state.FLEEING:
+			fly_speed = 30.0
+			parent.position -= Vector3(distance.x, - 1, 0).normalized() * SPEED * delta
+			if distance.x < 0:
+				sprite_3d.scale.x = -1.0
+				backwing_sprite.scale.x = -1.0
+				forewing_sprite.scale.x = -1.0
+			else:
+				sprite_3d.scale.x = 1.0
+				backwing_sprite.scale.x = 1.0
+				forewing_sprite.scale.x = 1.0
 
 func Fly():
-	current_state = state.FLYING
+	current_state = state.FLEEING
