@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://bsjc4qvhmuoow"]
+[gd_scene load_steps=4 format=3 uid="uid://bsjc4qvhmuoow"]
 
-[ext_resource type="Material" uid="uid://b4evq64o60bta" path="res://resources/materials/segment_body_material_3d.tres" id="1_602s3"]
+[ext_resource type="Texture2D" uid="uid://cna0uxsmo2eks" path="res://assets/visual/player_body_01.png" id="1_8siet"]
 [ext_resource type="Script" path="res://scenes/player/segment.gd" id="2_31835"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sky12"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_8siet")
+
 [node name="Segment" type="Sprite3D"]
-material_override = ExtResource("1_602s3")
+material_override = SubResource("StandardMaterial3D_sky12")
+texture = ExtResource("1_8siet")
 script = ExtResource("2_31835")
 
 [node name="Timer" type="Timer" parent="."]

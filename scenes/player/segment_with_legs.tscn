@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://chy0piolcwixe"]
+[gd_scene load_steps=4 format=3 uid="uid://chy0piolcwixe"]
 
 [ext_resource type="PackedScene" uid="uid://bsjc4qvhmuoow" path="res://scenes/player/segment_body.tscn" id="1_ns8rn"]
-[ext_resource type="Material" uid="uid://dmtgskljx6utd" path="res://resources/materials/segment_with_legs_material_3d.tres" id="2_cb24d"]
+[ext_resource type="Texture2D" uid="uid://cfwcgqjcobkka" path="res://assets/visual/player_body_00.png" id="2_4obfk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w5oug"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_4obfk")
 
 [node name="Segment" instance=ExtResource("1_ns8rn")]
-material_override = ExtResource("2_cb24d")
+material_override = SubResource("StandardMaterial3D_w5oug")
+texture = ExtResource("2_4obfk")

@@ -7,10 +7,10 @@ albedo_color = Color(0.23, 0.0736, 0.0762066, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_x8cn2"]
 material = SubResource("StandardMaterial3D_a8gud")
-size = Vector2(10, 10)
+size = Vector2(12, 12)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_12l6c"]
-size = Vector3(10, 1, 10)
+size = Vector3(12, 1, 12)
 
 [node name="RiverChunk" type="Node3D"]
 script = ExtResource("1_q0xem")
@@ -18,59 +18,43 @@ script = ExtResource("1_q0xem")
 [node name="LeftBank" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
 
-[node name="RigidBody3D2" type="RigidBody3D" parent="LeftBank"]
+[node name="RigidBody3D" type="RigidBody3D" parent="LeftBank"]
 transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 1, 5)
 freeze = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftBank/RigidBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.98027)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftBank/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -4.98027)
 mesh = SubResource("PlaneMesh_x8cn2")
 skeleton = NodePath("../../../Bottom")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftBank/RigidBody3D2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.522587, -5)
-shape = SubResource("BoxShape3D_12l6c")
-
-[node name="RigidBody3D3" type="RigidBody3D" parent="LeftBank"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 4, 5)
-freeze = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftBank/RigidBody3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.98027)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="LeftBank/RigidBody3D/MeshInstance3D"]
+transform = Transform3D(0.0868241, -0.992404, 0.0871557, 0.996195, 0.0871558, 0, -0.00759613, 0.0868241, 0.996195, -5.95825, -6, 0)
 mesh = SubResource("PlaneMesh_x8cn2")
-skeleton = NodePath("../../../Bottom")
+skeleton = NodePath("../../../../Bottom")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftBank/RigidBody3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.522587, -5)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftBank/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -0.522587, -5)
 shape = SubResource("BoxShape3D_12l6c")
 
 [node name="RightBank" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
 
-[node name="RigidBody3D3" type="RigidBody3D" parent="RightBank"]
+[node name="RigidBody3D" type="RigidBody3D" parent="RightBank"]
 transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 1, 5)
 freeze = true
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RightBank/RigidBody3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.98027)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RightBank/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -4.98027)
 mesh = SubResource("PlaneMesh_x8cn2")
 skeleton = NodePath("../../../Bottom")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RightBank/RigidBody3D3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.522587, -5)
-shape = SubResource("BoxShape3D_12l6c")
-
-[node name="RigidBody3D4" type="RigidBody3D" parent="RightBank"]
-transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 4, 5)
-freeze = true
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="RightBank/RigidBody3D4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.98027)
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RightBank/RigidBody3D/MeshInstance3D"]
+transform = Transform3D(0.0868241, 0.992404, -0.0871557, -0.996195, 0.0871558, 0, 0.00759613, 0.0868241, 0.996195, 5.85999, -6, -0.0837312)
 mesh = SubResource("PlaneMesh_x8cn2")
 skeleton = NodePath("../../../Bottom")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="RightBank/RigidBody3D4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.522587, -5)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RightBank/RigidBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, -0.522587, -5)
 shape = SubResource("BoxShape3D_12l6c")
 
 [node name="Bottom" type="Node3D" parent="."]

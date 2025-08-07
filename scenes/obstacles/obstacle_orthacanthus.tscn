@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://5wt6nbfxum2u" path="res://assets/visual/orthacanthus/orthacanthus_frame2.png" id="4_lwa47"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0x0e8"]
-transparency = 1
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("3_sfhdf")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_658u6"]
@@ -42,4 +44,4 @@ sprite_frames = SubResource("SpriteFrames_6vu47")
 script = ExtResource("3_qwng7")
 
 [node name="CollisionPolygon3D" type="CollisionPolygon3D" parent="." index="2"]
-polygon = PackedVector2Array(-0.0417216, -1.40741, -0.419999, -1.3796, -0.664767, -1.14596, -0.992978, -0.839998, -1.17099, -0.684237, -1.94423, -1.00132, -2.07218, -0.739866, -1.18212, -0.461721, -1.04304, 0.139072, -0.547946, 0.433906, -0.141854, 0.606356, 0.375496, 0.272582, 0.798276, -0.200264, 0.926223, -0.589667, 1.4102, -0.712051, 1.34344, -0.86225, 0.742647, -0.745429, 0.564634, -1.10145, 0.247549, -1.35178)
+polygon = PackedVector2Array(-0.346065, 1.56173, 0.0384517, 0.378601, 0.630016, 0.0473252, 0.80157, -0.479167, 1.84272, -0.63889, 2.36922, -0.987913, 1.71849, -1.26003, 0.813401, -0.662552, 0.440715, -1.22454, -0.032536, -1.40792, -0.553113, -1.29553, -1.2275, -0.650721, -2.17992, -1.35468, -2.73599, -0.96425, -2.37513, -0.715793, -1.25707, -0.473252, -1.13876, -0.0532408, -0.192258, 0.390433)

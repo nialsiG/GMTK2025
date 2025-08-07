@@ -3,5 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://clnholfxdr5qm" path="res://assets/visual/player_body_02.png" id="1_8qpdq"]
 
 [resource]
-transparency = 1
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("1_8qpdq")

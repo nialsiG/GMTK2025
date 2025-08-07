@@ -22,25 +22,28 @@ func _physics_process(delta):
 	# state machine
 	match player_state:
 		PlayerState.SWIMMING:
-			if position.y >= UPPER_LIMIT:
+			if position.y > UPPER_LIMIT:
 				velocity.y = 0
 				player_state = PlayerState.SURFACE
 				# play surface splash sound
-		PlayerState.SURFACE:
-			# change sound
-			SignalManager.PlayerAtSurface.emit()
-			if position.y < UPPER_LIMIT:
-				player_state = PlayerState.SWIMMING
+				SignalManager.PlayerAtSurface.emit(true)
 			if is_on_floor():
 				player_state = PlayerState.BED
 				play_sand_particles = true
+		PlayerState.SURFACE:
+			# Handle dive
+			if Input.is_action_just_pressed("move_down") and player_state == PlayerState.SURFACE:
+				velocity.y = -JUMP_VELOCITY
+				player_state = PlayerState.SWIMMING
+				# play surface splash sound
+				SignalManager.PlayerAtSurface.emit(false)
 		PlayerState.BED:
 			if !is_on_floor():
 				player_state = PlayerState.SWIMMING
 				play_sand_particles = false
 	
 	# Add the gravity
-	if not is_on_floor():
+	if player_state == PlayerState.SWIMMING:
 		velocity += get_gravity() * delta
 		if (velocity.y * -1) > SPEED / 2:
 			velocity.y = - SPEED / 2
@@ -54,7 +57,7 @@ func _physics_process(delta):
 			animated_head_timer.start()
 		else:
 			animated_head_timer.wait_time = 0.5
-		
+			
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_axis("move_left", "move_right")

@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmwhvtcwawn10"]
+[gd_scene load_steps=4 format=3 uid="uid://bmwhvtcwawn10"]
 
 [ext_resource type="PackedScene" uid="uid://bsjc4qvhmuoow" path="res://scenes/player/segment_body.tscn" id="1_djs11"]
-[ext_resource type="Material" uid="uid://cti844mv7get8" path="res://resources/materials/segment_tail_material_3d.tres" id="2_4beyp"]
+[ext_resource type="Texture2D" uid="uid://clnholfxdr5qm" path="res://assets/visual/player_body_02.png" id="2_qion0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0x7pt"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_qion0")
 
 [node name="Segment" instance=ExtResource("1_djs11")]
-material_override = ExtResource("2_4beyp")
+material_override = SubResource("StandardMaterial3D_0x7pt")
+texture = ExtResource("2_qion0")

@@ -8,7 +8,7 @@ const SPEED = 5
 
 func _process(delta):
 	position += Vector3 (0, 0, SPEED * delta)
-	if position.z >= 5 and is_active:
+	if position.z >= 10 and is_active:
 		SignalManager.NewRiverChunk.emit(Vector3(0,0,-30))
 		is_active = false
 	if !is_active:

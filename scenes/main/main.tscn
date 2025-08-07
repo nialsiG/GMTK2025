@@ -1,11 +1,13 @@
-[gd_scene load_steps=43 format=3 uid="uid://c0unv0yhgcwao"]
+[gd_scene load_steps=44 format=3 uid="uid://c0unv0yhgcwao"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_sl07k"]
 [ext_resource type="AudioStream" uid="uid://dx6mxg8oyr4qd" path="res://assets/music/FIRST_SNOW_modified.mp3" id="2_0bul8"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="2_eh76i"]
 [ext_resource type="Texture2D" uid="uid://cnad0cgl6ax6u" path="res://assets/visual/background.png" id="3_6yg6n"]
 [ext_resource type="Script" path="res://scenes/procedural_generation/river_chunk_factory.gd" id="3_gb04c"]
+[ext_resource type="PackedScene" uid="uid://25ie1cikwp5a" path="res://scenes/procedural_generation/river_chunk.tscn" id="5_0x55u"]
 [ext_resource type="LabelSettings" uid="uid://bye3vxwg60mt5" path="res://resources/labels/game_title.tres" id="5_edcw7"]
+[ext_resource type="Material" uid="uid://xfncs8kp8pb7" path="res://resources/materials/underwater_shader_material.tres" id="6_6po0o"]
 [ext_resource type="Theme" uid="uid://bflh17b8kclhy" path="res://resources/buttons/button_theme.tres" id="6_66ijs"]
 [ext_resource type="LabelSettings" uid="uid://by2uc5jlkvm74" path="res://resources/labels/game_instructions.tres" id="6_hdddv"]
 [ext_resource type="Script" path="res://scenes/player/procedural_animation_component.gd" id="6_vgd0k"]
@@ -13,10 +15,8 @@
 [ext_resource type="LabelSettings" uid="uid://clfkc3ikaaoin" path="res://resources/labels/score_label.tres" id="7_h8iyt"]
 [ext_resource type="Texture2D" uid="uid://d3spk4b3quhdd" path="res://assets/visual/player_head_02.png" id="8_2limp"]
 [ext_resource type="PackedScene" uid="uid://bsjc4qvhmuoow" path="res://scenes/player/segment_body.tscn" id="9_by1mr"]
-[ext_resource type="Texture2D" uid="uid://cfwcgqjcobkka" path="res://assets/visual/player_body_00.png" id="10_gvaxw"]
-[ext_resource type="Texture2D" uid="uid://cna0uxsmo2eks" path="res://assets/visual/player_body_01.png" id="11_g30mc"]
-[ext_resource type="Texture2D" uid="uid://clnholfxdr5qm" path="res://assets/visual/player_body_02.png" id="12_knc63"]
 [ext_resource type="PackedScene" uid="uid://bmwhvtcwawn10" path="res://scenes/player/segment_tail.tscn" id="12_m4e2w"]
+[ext_resource type="PackedScene" uid="uid://chy0piolcwixe" path="res://scenes/player/segment_with_legs.tscn" id="13_g7ckj"]
 [ext_resource type="LabelSettings" uid="uid://bncy4xxs382wq" path="res://resources/labels/settings_label.tres" id="13_kc4oo"]
 [ext_resource type="Texture2D" uid="uid://i3ewb7wrsbra" path="res://assets/visual/instructions.png" id="13_n50yl"]
 [ext_resource type="Shader" path="res://resources/shaders/higlight_button.gdshader" id="14_aymbh"]
@@ -42,23 +42,37 @@ sky_material = SubResource("ProceduralSkyMaterial_2o2lu")
 background_mode = 2
 sky = SubResource("Sky_1fj1x")
 sdfgi_enabled = true
-fog_light_color = Color(0.110187, 0.294093, 0.280546, 1)
+fog_light_color = Color(0.304059, 0.146646, 0.117959, 1)
+fog_light_energy = 0.1
+fog_sky_affect = 0.5
 volumetric_fog_albedo = Color(0.67, 0.67, 0.67, 1)
 volumetric_fog_emission = Color(0.0502237, 0.194271, 0.215171, 1)
 volumetric_fog_emission_energy = 0.2
 adjustment_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xk4ai"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("3_6yg6n")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ql3fv"]
+size = Vector2(12, 12)
+orientation = 2
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3pamf"]
 radius = 0.2615
 height = 1.08688
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jw2c8"]
-transparency = 1
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("7_0e2l8")
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q766c"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_stkfr"]
 atlas = ExtResource("7_0e2l8")
-region = Rect2(0, 0, 100, 47)
+region = Rect2(0, 0, 100, 50)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7oq2f"]
 atlas = ExtResource("8_2limp")
@@ -68,7 +82,7 @@ region = Rect2(0, 0, 100, 90)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q766c")
+"texture": SubResource("AtlasTexture_stkfr")
 }],
 "loop": true,
 "name": &"default",
@@ -82,10 +96,6 @@ animations = [{
 "name": &"going_up",
 "speed": 5.0
 }]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gck3h"]
-transparency = 1
-albedo_texture = ExtResource("10_gvaxw")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xls4k"]
 
@@ -123,12 +133,26 @@ environment = SubResource("Environment_0vbyx")
 
 [node name="Background" type="Sprite3D" parent="WorldEnvironment"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, -30)
+material_override = SubResource("StandardMaterial3D_xk4ai")
 texture = ExtResource("3_6yg6n")
 
 [node name="Environment" type="Node3D" parent="."]
 
 [node name="RiverChunkFactory" type="Node" parent="Environment"]
 script = ExtResource("3_gb04c")
+
+[node name="RiverChunk" parent="Environment/RiverChunkFactory" instance=ExtResource("5_0x55u")]
+
+[node name="UnderwaterShaderPlan" type="MeshInstance3D" parent="Environment/RiverChunkFactory"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -0.5)
+material_override = ExtResource("6_6po0o")
+mesh = SubResource("PlaneMesh_ql3fv")
+
+[node name="UnderwaterShaderPlan2" type="MeshInstance3D" parent="Environment/RiverChunkFactory/UnderwaterShaderPlan"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 6, -4.52179)
+material_override = ExtResource("6_6po0o")
+mesh = SubResource("PlaneMesh_ql3fv")
+skeleton = NodePath("../..")
 
 [node name="3C" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
@@ -171,7 +195,7 @@ spot_angle_attenuation = 4.0
 [node name="ProceduralAnimationComponent" type="Node3D" parent="3C/Player" node_paths=PackedStringArray("node_array")]
 script = ExtResource("6_vgd0k")
 isAnimated = true
-node_array = [NodePath("../AnimatedHead"), NodePath("../../BodyNodes/Segment_1"), NodePath("../../BodyNodes/Segment_3"), NodePath("../../BodyNodes/Segment_4"), NodePath("../../BodyNodes/Segment_2"), NodePath("../../BodyNodes/Segment_5"), NodePath("../../BodyNodes/Segment_6"), NodePath("../../BodyNodes/Segment_7"), NodePath("../../BodyNodes/Segment_8"), NodePath("../../BodyNodes/Segment_9"), NodePath("../../BodyNodes/Segment_10")]
+node_array = [NodePath("../AnimatedHead"), NodePath("../../BodyNodes/Segment_1"), NodePath("../../BodyNodes/Segment_2"), NodePath("../../BodyNodes/Segment_3"), NodePath("../../BodyNodes/Segment_4"), NodePath("../../BodyNodes/Segment_5"), NodePath("../../BodyNodes/Segment_6"), NodePath("../../BodyNodes/Segment_7"), NodePath("../../BodyNodes/Segment_8"), NodePath("../../BodyNodes/Segment_9"), NodePath("../../BodyNodes/Segment_10")]
 
 [node name="Timer" type="Timer" parent="3C/Player/ProceduralAnimationComponent"]
 autostart = true
@@ -179,53 +203,42 @@ autostart = true
 [node name="AnimatedHead" type="AnimatedSprite3D" parent="3C/Player"]
 material_override = SubResource("StandardMaterial3D_jw2c8")
 sprite_frames = SubResource("SpriteFrames_2esa3")
+animation = &"going_up"
 
 [node name="Timer" type="Timer" parent="3C/Player/AnimatedHead"]
 
 [node name="BodyNodes" type="Node3D" parent="3C"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0474111)
 
-[node name="Segment_1" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
+[node name="Segment_1" parent="3C/BodyNodes" instance=ExtResource("13_g7ckj")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_gck3h")
-texture = ExtResource("10_gvaxw")
-
-[node name="Segment_3" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
-transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 1, 0, 0, 0)
-texture = ExtResource("11_g30mc")
-
-[node name="Segment_4" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
-transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 1, 0, 0, 0)
-material_override = SubResource("StandardMaterial3D_gck3h")
-texture = ExtResource("10_gvaxw")
 
 [node name="Segment_2" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Segment_3" parent="3C/BodyNodes" instance=ExtResource("13_g7ckj")]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Segment_4" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
 transform = Transform3D(0.7, 0, 0, 0, 0.9, 0, 0, 0, 1, 0, 0, 0)
-texture = ExtResource("11_g30mc")
 
 [node name="Segment_5" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
 transform = Transform3D(0.6, 0, 0, 0, 0.9, 0, 0, 0, 1, 0, 0, 0)
-texture = ExtResource("11_g30mc")
 
 [node name="Segment_6" parent="3C/BodyNodes" instance=ExtResource("9_by1mr")]
 transform = Transform3D(0.5, 0, 0, 0, 0.8, 0, 0, 0, 1, 0, 0, 0)
-texture = ExtResource("11_g30mc")
 
 [node name="Segment_7" parent="3C/BodyNodes" instance=ExtResource("12_m4e2w")]
 transform = Transform3D(1.2, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-texture = ExtResource("12_knc63")
 
 [node name="Segment_8" parent="3C/BodyNodes" instance=ExtResource("12_m4e2w")]
 transform = Transform3D(1, 0, 0, 0, 0.9, 0, 0, 0, 1, 0, 0, 0)
-texture = ExtResource("12_knc63")
 
 [node name="Segment_9" parent="3C/BodyNodes" instance=ExtResource("12_m4e2w")]
 transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
-texture = ExtResource("12_knc63")
 
 [node name="Segment_10" parent="3C/BodyNodes" instance=ExtResource("12_m4e2w")]
 transform = Transform3D(0.6, 0, 0, 0, 0.7, 0, 0, 0, 0.4, 0, 0, 0)
-texture = ExtResource("12_knc63")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -424,10 +437,10 @@ vertical_alignment = 1
 unique_name_in_owner = true
 custom_minimum_size = Vector2(300, 50)
 layout_mode = 2
-min_value = 0.8
+min_value = 0.9
 max_value = 1.2
 step = 0.05
-value = 1.0
+value = 1.1
 
 [node name="Brightness" type="HBoxContainer" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer"]
 layout_mode = 2
@@ -446,7 +459,7 @@ layout_mode = 2
 min_value = 1.0
 max_value = 5.0
 step = 0.5
-value = 2.0
+value = 1.5
 
 [node name="MasterVolume2" type="HBoxContainer" parent="CanvasLayer/StartMenu/OptionsMenu/MarginContainer/GridContainer"]
 layout_mode = 2

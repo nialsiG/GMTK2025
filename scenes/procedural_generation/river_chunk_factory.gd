@@ -15,11 +15,8 @@ const MEGANEURA_COLLECTIBLE = preload("res://scenes/collectibles/meganeura_colle
 
 func _ready():
 	BuildNewChunk(Vector3(0,0,0))
-	BuildNewChunk(Vector3(0,0,-5))
 	BuildNewChunk(Vector3(0,0,-10))
-	BuildNewChunk(Vector3(0,0,-15))
 	BuildNewChunk(Vector3(0,0,-20))
-	BuildNewChunk(Vector3(0,0,-25))
 	BuildNewChunk(Vector3(0,0,-30))
 	SignalManager.NewRiverChunk.connect(BuildNewChunk)
 
@@ -59,14 +56,18 @@ func BuildNewChunk(origin: Vector3, is_empty = false):
 	if is_empty or !GlobalVariables.can_spawn:
 		return
 	
-	var index = randi_range(0,10)
+	var index = randi_range(0,1)
+	#var index = 1
 	match index:
 		0:
-			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(0,8,-5))
+			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(1.8,8,4))
+			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(2.4,8,0))
+			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(3,8,-4))
 			pass
 		1:
-			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(3,3,-5))
-			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(3,5,-10))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(-2,2,0))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(0,3,-4))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(2,4,-8))
 			pass
 		2:
 			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(3,3,-5))
