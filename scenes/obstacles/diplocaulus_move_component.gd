@@ -19,7 +19,6 @@ var current_state: state = state.HIDDEN
 
 func _process(delta):
 	var distance = GlobalVariables.player_global_position - parent.global_position
-	print("distance = ", distance)
 	# state machine
 	match current_state:
 		state.HIDDEN:

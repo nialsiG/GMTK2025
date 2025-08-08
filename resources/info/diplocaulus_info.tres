@@ -1,11 +1,12 @@
 [gd_resource type="Resource" script_class="InfoResource" load_steps=3 format=3 uid="uid://om3032btaw8m"]
 
 [ext_resource type="Script" path="res://resources/info/info_resource.gd" id="1_0ar1p"]
-[ext_resource type="Texture2D" uid="uid://b1f734o2wk8o4" path="res://assets/visual/diplocaulus_magnicornis_sprite2.png" id="1_ew583"]
+[ext_resource type="Texture2D" uid="uid://cfbj1rwnmasuo" path="res://assets/visual/diplocaulus_magnicornis_02.png" id="1_fn85a"]
 
 [resource]
 script = ExtResource("1_0ar1p")
 info_name = "Diplocaulus"
-info_description = "Diplocaulus is an amphibian."
-info_source = ""
-info_texture = ExtResource("1_ew583")
+info_description = "This long aquatic amphibian belongs to the extinct group of the Lepospondyls. It is famous because of its boomerang-shaped skull, which could be used  like a waterfoil. This allowed [i]Diplocaulus[/i] to rapidly ascend into the water in order to escape predators... or to ambush unwarry preys from below! During the dry season, [i]Diplocaulus[/i] used to estivate inside burrows, protected by a coccoon of mucus - just like extant lungfishes."
+info_source = "Cruickshank, A. R. I., Skews, B. W., & Parrington, F. R. (1997). The functional significance of nectridean tabular horns (Amphibia: Lepospondyli). Proceedings of the Royal Society of London. Series B. Biological Sciences, 209(1177), 513–537. https://doi.org/10.1098/rspb.1980.0110
+"
+info_texture = ExtResource("1_fn85a")

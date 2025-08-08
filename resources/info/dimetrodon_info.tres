@@ -6,8 +6,7 @@
 [resource]
 script = ExtResource("2_7cej7")
 info_name = "Dimetrodon"
-info_description = "[i]Dimetrodon[/i] was a quadrupedal, sail-backed synapsid. With its strong snout, massive skull and deep jaw, it was an apex predator during the Cisuralian period. Still, it preferred aquatic preys such as [i]Diplocaulus[/i].
-"
+info_description = "[i]Dimetrodon[/i] was a quadrupedal, sail-backed synapsid - a group of mammalian reptiles. With its deep jaw and its large serrated teeth, it was an apex predator able to hunt the large terrestrial reptiles and aquatic preys such as [i]Diplocaulus[/i]. The function of its sail, while long though to help regulate its body temperature, was probably used to impress rivals and to attract potential mates."
 info_source = "Sources:
 Brink, K. S., & Reisz, R. R. (2014). Hidden dental diversity in the oldest terrestrial apex predator Dimetrodon. Nature Communications, 5(1), 3269. https://doi.org/10.1038/ncomms4269
 "

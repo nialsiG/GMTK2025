@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_obw6j")
 info_name = "Orthacanthus"
-info_description = ""
-info_source = ""
+info_description = "[i]Orthacanthus[/i] was a freshwater xenacanthiform shark, a group characterized by a long dorsal spine. With its multiple rows of sharp three-cusped teeth, it was the terror of the swamps in what would be Northern America and Europe: according to its coprolites (fossilized excrements), it preyed on fish, amphibians, reptiles and even juvenile [i]Orthacanthus[/i]!"
+info_source = "Ó Gogáin, A., Falcon-Lang, H. J., Carpenter, D. K., Miller, R. F., Benton, M. J., Pufahl, P. K., Ruta, M., Davies, T. G., Hinds, S. J., & Stimson, M. R. (2016). Fish and tetrapod communities across a marine to brackish salinity gradient in the Pennsylvanian (early Moscovian) Minto Formation of New Brunswick, Canada, and their palaeoecological and palaeogeographical implications. Palaeontology, 59(5), 689–724. https://doi.org/10.1111/pala.12249
+"
 info_texture = ExtResource("1_l6b2g")

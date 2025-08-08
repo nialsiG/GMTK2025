@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("1_gp5py")
-info_name = "Mamayocaris"
-info_description = ""
-info_source = ""
+info_name = "Pygocephalomorphs"
+info_description = "Pygocephalomorphs is an extinct group of crustaceans resembling modern crayfish. They could be found in marine, brackish and continental freshwater environments - but they thrived in swampy environments. Like some present-day crustaceans, females carried their eggs under their belly using specialized appendages called [i]oöstegites[/i] They all went extinct at the end of the Cisuralian."
+info_source = "Pazinato, P. G., Soares, M. B., & Adami-Rodrigues, K. (2016). Systematic and palaeoecological significance of the first record of Pygocephalomorpha females bearing oöstegites (Malacostraca, Peracarida) from the lower Permian of southern Brazil. Palaeontology, 59(6), 817–826. https://doi.org/10.1111/pala.12260
+"
 info_texture = ExtResource("1_xrukl")

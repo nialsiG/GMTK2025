@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_s7xsu")
 info_name = "Meganeuropsis"
-info_description = "Although [i]Meganeuropsis[/i] looks like a dragonfly, it actually belongs to the now extinct order of the 'griffinflies' (Meganisoptera). Like dragonflies, it was a predator. With a body length of 43cm and an estimated wingspan of 71cm, [i]Meganeuropsis permiana[/i] is one of the largest insects to have roamed the sky! "
-info_source = ""
+info_description = "Although [i]Meganeuropsis[/i] looks like a dragonfly, it actually belongs to the now extinct order of the 'griffinflies' (Meganisoptera). They patrolled above open areas such as lakes or rivers, and used their barbed legs and large mandibles to capture other insects in flight. With an estimated wingspan of 71cm, [i]Meganeuropsis permiana[/i] is one of the largest insects to have roamed the sky! "
+info_source = "Nel, A., Prokop, J., Pecharová, M., Engel, M. S., & Garrouste, R. (2018). Palaeozoic giant dragonflies were hawker predators. Scientific Reports, 8(1), 12141. https://doi.org/10.1038/s41598-018-30629-w
+"
 info_texture = ExtResource("1_ath42")

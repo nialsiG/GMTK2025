@@ -13,5 +13,6 @@ func _ready():
 	animated_sprite.play("default", 0.5)
 
 func _physics_process(delta):
-	parent.position += delta * SPEED * Vector3(0, 0, 1)
+	var distance = GlobalVariables.player_global_position - parent.global_position
+	parent.position += delta * SPEED * Vector3(distance.normalized().x, 0, 1)
 	animated_sprite.material_override.albedo_texture = animated_sprite.sprite_frames.get_frame_texture("default", animated_sprite.get_frame())

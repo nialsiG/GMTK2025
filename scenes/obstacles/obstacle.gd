@@ -6,11 +6,10 @@ class_name Obstacle
 @export var obstacle_points: int = 1
 
 # runtime variables
-@onready var is_passed: bool = false
+var is_passed: bool = false
 
 func _physics_process(_delta):
 	if !is_passed and global_position.z > GlobalVariables.player_global_position.z:
-		print("obstacle has been passed!")
 		is_passed = true
 		SignalManager.AddPoints.emit(obstacle_points)
 

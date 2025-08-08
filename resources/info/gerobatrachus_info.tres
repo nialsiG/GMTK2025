@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_uxx7n")
 info_name = "Gerobatrachus"
-info_description = "[i]Gerobatrachus[/i] is an extinct genus of amphibamid temnospondyl that lived in the Early Permian, approximately 290 million years ago (Ma). It possesses a large frog-like head and a salamander-like tail.
+info_description = "A putative ancestor of all extant amphibians, this small aquatic animal is known from a single nearly-complete specimen from Texas. [i]Gerobatrachus[/i] is a temnospondyl, a group of amhibians that lived for 210 millions years, from the Carboniferous to the Cretaceous - largely outliving dinosaurs! During the Permian, some temnospondyls reached very large sizes, such as the 5m long [i]Prionosuchus plummeri[/i].
 "
 info_source = "Sources:
 Anderson, J. S., Reisz, R. R., Scott, D., Fröbisch, N. B., & Sumida, S. S. (2008). A stem batrachian from the Early Permian of Texas and the origin of frogs and salamanders. Nature, 453(7194), 515–518. https://doi.org/10.1038/nature06865"

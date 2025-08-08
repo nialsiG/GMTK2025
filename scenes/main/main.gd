@@ -25,6 +25,7 @@ extends Node
 @onready var mamayocaris_button: Button = %MamayocarisButton
 @onready var meganeura_button: Button = %MeganeuraButton
 @onready var gnathorhiza_button: Button = %GnathorhizaButton
+@onready var back_to_menu_button: Button = $CanvasLayer/BackToMenuButton
 @onready var v_box_info_button_container: VBoxContainer = %VBoxInfoButtonContainer
 @onready var instructions: Control = %Instructions
 @onready var instructions_label: Label = %InstructionsLabel
@@ -89,6 +90,7 @@ func StartGame():
 	player_camera_3d.make_current()
 	player.visible = true
 	body_nodes.visible = true
+	back_to_menu_button.visible = true
 	GlobalVariables.can_spawn = true
 	current_score = 0
 	UpdateScore()
@@ -100,6 +102,7 @@ func StartMenu():
 	menu_camera_3d.make_current()
 	player.visible = false
 	body_nodes.visible = false
+	back_to_menu_button.visible = false
 	GlobalVariables.can_spawn = false
 	UpdateScore()
 	await get_tree().create_timer(0.5).timeout
@@ -107,7 +110,6 @@ func StartMenu():
 
 func UpdateScore(amount: int = 0):
 	current_score += amount
-	print("current score: ", current_score)
 	score_label.text = str(current_score)
 	if current_score >= max_score:
 		max_score_label.text = str(current_score)
@@ -234,3 +236,9 @@ func _on_music_slider_value_changed(value):
 
 func _on_sfx_slider_value_changed(value):
 	SetVolume()
+
+func _on_option_button_toggled(toggled_on):
+	GlobalVariables.is_chill_mode = !GlobalVariables.is_chill_mode
+
+func _on_back_to_menu_button_pressed():
+	StartMenu()

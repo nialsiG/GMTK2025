@@ -56,48 +56,113 @@ func BuildNewChunk(origin: Vector3, is_empty = false):
 	add_child(instance)
 	if is_empty or !GlobalVariables.can_spawn:
 		return
-	
-	var index = randi_range(0,5)
-	#index = 3
+		
+	var index: int
+	if GlobalVariables.is_chill_mode:
+		index = randi_range(0, 5)
+	else:
+		index = randi_range(0, 16)
+		
 	match index:
 		0:
-			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(1.8,8,4))
-			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(2.4,8,0))
-			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(3,8,-4))
-			pass
-		1:
-			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(-2,2,0))
-			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(0,3,-4))
-			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(2,4,-8))
-			pass
-		2:
-			SpawnObstacle(instance, Enums.ObstacleType.DIPLOCAULUS, Vector3(0,-2.5,0))
-			pass
-		3:
-			SpawnCollectible(instance, Enums.CollectibleType.MEGANEURA, Vector3(1.8,8,4))
+			# Empty
 			instance.ShowDimetrodon()
-			pass
+		1:
+			# Free Gerobatrachus!
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),randf_range(-1.0, 2.0),4))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),randf_range(2.0, 4.0),0))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),randf_range(2.0, 4.0),0))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),randf_range(-1.0, 2.0),-4))
+		2:
+			# Free Meganeura!
+			SpawnCollectible(instance, Enums.CollectibleType.MEGANEURA, Vector3(randf_range(-2.0, 2.0),8,4))
+			SpawnCollectible(instance, Enums.CollectibleType.MEGANEURA, Vector3(randf_range(-2.0, 2.0),8,-4))
+		3:
+			# Free Mamayocaris!
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),0.2))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),0.1))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),0))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),-0.1))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),-0.2))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),-0.3))
 		4:
-			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(0,2,4))
-			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(2,1,0))
-			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(-2,2,-4))
-			pass
+			# High water mix 
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),randf_range(2.0, 4.0),4))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),randf_range(2.0, 4.0),0))
+			SpawnCollectible(instance, Enums.CollectibleType.MEGANEURA, Vector3(randf_range(-2.0, 2.0),8,-4))
 		5:
-			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(0,3,4))
-			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(-4,4,0))
-			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(4,5,-4))
-			pass
+			# Deep water mix
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),randf_range(1.0, 3.0),4))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),randf_range(1.0, 3.0),4))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),0.1))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),0))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),-0.1))
 		6:
-			pass
+			# High frog crossfire
+			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(randf_range(-1.5, 1.5),8,4))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),4,1))
+			SpawnObstacle(instance, Enums.ObstacleType.DIPLOCAULUS, Vector3(0,-2.5,0))
 		7:
-			pass
+			# Low frog crossfire
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),0,4))
+			SpawnObstacle(instance, Enums.ObstacleType.DIPLOCAULUS, Vector3(0,-2.5,0))
+			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(randf_range(-1.5, 1.5),8,-4))
 		8:
-			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(0,2,-5))
-			pass
+			# Middle frog crossfire
+			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(randf_range(-1.5, 1.5),8,4))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),4,1))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(randf_range(-4.0, 4.0),2,-8))
+			SpawnObstacle(instance, Enums.ObstacleType.DIPLOCAULUS, Vector3(0,-2.5,0))
 		9:
-			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(0,2,-5))
-			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(2,8,-5))
-			pass
+			# Jaws!
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(randf_range(-4.0, 4.0),5,0))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(randf_range(-4.0, 4.0),2,-4))
+			SpawnObstacle(instance, Enums.ObstacleType.DIPLOCAULUS, Vector3(0,-2.5,0))
 		10:
-			pass
-	
+			# Griffinfly trap
+			SpawnCollectible(instance, Enums.CollectibleType.MEGANEURA, Vector3(2,8,4))
+			SpawnCollectible(instance, Enums.CollectibleType.MEGANEURA, Vector3(-3,8,2))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(randf_range(-4.0, 4.0),7.5,-30))
+			SpawnObstacle(instance, Enums.ObstacleType.DIPLOCAULUS, Vector3(0,-2.5,0))
+		11:
+			# Mamayocaris_trap
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),0.2))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),0.1))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),0))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),-0.1))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),-0.2))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(randf_range(-4.0, 4.0),7.5,-30))
+			SpawnObstacle(instance, Enums.ObstacleType.DIPLOCAULUS, Vector3(0,-2.5,-4))
+		12:
+			# Dimetrodon and griffinfly
+			SpawnCollectible(instance, Enums.CollectibleType.MEGANEURA, Vector3(randf_range(-2.0, 2.0),8,4))
+			SpawnObstacle(instance, Enums.ObstacleType.DIMETRODON, Vector3(-2.5,8,-4))
+			# Diplocaulus and frog
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),randf_range(-2.0, 2.0),0))
+			SpawnObstacle(instance, Enums.ObstacleType.DIPLOCAULUS, Vector3(0,-2.5,-4))
+		13:
+			# Shark and mamayocaris
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),0.2))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),0.1))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),0))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),-0.1))
+			SpawnCollectible(instance, Enums.CollectibleType.MAMAYOCARIS, Vector3(randf_range(0, 4.0),randf_range(-4.0, 1.0),-0.2))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(randf_range(-4.0, 4.0),2,-20))
+		14:
+			# Shark and frogs
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),randf_range(2.0, 4.0),4))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),randf_range(2.0, 4.0),4))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 4.0),randf_range(2.0, 4.0),4))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(randf_range(-4.0, 4.0),4.0,-8))
+		15:
+			# Frog / High shark and Diplocaulus / Frog
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 2.0),randf_range(1.0, 3.0),4))
+			SpawnObstacle(instance, Enums.ObstacleType.DIPLOCAULUS, Vector3(0,-2.5,0))
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 2.0),randf_range(1.0, 3.0),-4))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(randf_range(-4.0, 4.0),6,-26))
+		16:
+			# Frog / Diplocaulus / Shark / Griffinfly
+			SpawnCollectible(instance, Enums.CollectibleType.GEROBATRACHUS, Vector3(randf_range(-4.0, 2.0),randf_range(1.0, 3.0),4))
+			SpawnObstacle(instance, Enums.ObstacleType.DIPLOCAULUS, Vector3(0,-2.5,0))
+			SpawnCollectible(instance, Enums.CollectibleType.MEGANEURA, Vector3(randf_range(-2.0, 2.0),8,4))
+			SpawnObstacle(instance, Enums.ObstacleType.ORTHACANTHUS, Vector3(randf_range(-4.0, 4.0),7,-26))
