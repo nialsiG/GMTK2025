@@ -17,7 +17,6 @@ extends Node
 @onready var sfx_slider: HSlider = %SFXSlider
 @onready var master_volume_slider: HSlider = %MasterVolumeSlider
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
-@onready var music_audio_stream_player: AudioStreamPlayer = $MusicAudioStreamPlayer
 @onready var gerobatrachus_button: Button = %GerobatrachusButton
 @onready var dimetrodon_button: Button = %DimetrodonButton
 @onready var orthacanthus_button: Button = %OrthacanthusButton
@@ -29,6 +28,9 @@ extends Node
 @onready var v_box_info_button_container: VBoxContainer = %VBoxInfoButtonContainer
 @onready var instructions: Control = %Instructions
 @onready var instructions_label: Label = %InstructionsLabel
+@onready var music_audio_stream_player: AudioStreamPlayer = %MusicAudioStreamPlayer
+@onready var sfx_audio_stream_player: AudioStreamPlayer = %SFXAudioStreamPlayer
+@onready var ambient_audio_stream_player: AudioStreamPlayer = %AmbientAudioStreamPlayer
 
 @onready var current_score: int = 0 
 @onready var max_score: int = 0
@@ -94,6 +96,7 @@ func StartGame():
 	GlobalVariables.can_spawn = true
 	current_score = 0
 	UpdateScore()
+	SignalManager.PlayerDive.emit()
 
 func StartMenu():
 	can_start = false
@@ -105,6 +108,7 @@ func StartMenu():
 	back_to_menu_button.visible = false
 	GlobalVariables.can_spawn = false
 	UpdateScore()
+	SignalManager.PlayerAtSurface.emit()
 	await get_tree().create_timer(0.5).timeout
 	can_start = true
 
@@ -118,7 +122,8 @@ func UpdateScore(amount: int = 0):
 func SetVolume(global_volume: float = master_volume_slider.value, music_volume: float = music_slider.value, sfx_volume: float = sfx_slider.value):
 	GlobalVariables.global_volume = global_volume
 	music_audio_stream_player.volume_db = GlobalVariables.global_volume * music_volume
-	# sfx volume
+	sfx_audio_stream_player.volume_db = GlobalVariables.global_volume * sfx_volume
+	ambient_audio_stream_player.volume_db = GlobalVariables.global_volume * sfx_volume
 
 func SetBrightness(value: float = brightness_slider.value):
 	world_environment.environment.adjustment_brightness = value
@@ -218,9 +223,9 @@ func UnlockMamayocaris():
 		return
 	is_button_active = true
 	mamayocaris_unlocked = true
-	# add Mamayocaris to wiki
-	UnlockButton(mamayocaris_button, "Mamayocaris")
-	info_button_focus = "Mamayocaris"
+	# add Pygocephalomorphs to wiki
+	UnlockButton(mamayocaris_button, "Pygocephalomorphs")
+	info_button_focus = "Pygocephalomorphs"
 
 func _on_contrast_slider_value_changed(value):
 	SetContrast()

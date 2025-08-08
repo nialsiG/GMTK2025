@@ -1,19 +1,27 @@
-[gd_scene load_steps=44 format=3 uid="uid://c0unv0yhgcwao"]
+[gd_scene load_steps=52 format=3 uid="uid://c0unv0yhgcwao"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_sl07k"]
 [ext_resource type="AudioStream" uid="uid://dx6mxg8oyr4qd" path="res://assets/music/FIRST_SNOW_modified.mp3" id="2_0bul8"]
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="2_eh76i"]
+[ext_resource type="AudioStream" uid="uid://2jpevwmu4hko" path="res://assets/sound/underwater_noise.ogg" id="2_voi15"]
 [ext_resource type="Texture2D" uid="uid://cnad0cgl6ax6u" path="res://assets/visual/background.png" id="3_6yg6n"]
 [ext_resource type="Script" path="res://scenes/procedural_generation/river_chunk_factory.gd" id="3_gb04c"]
+[ext_resource type="AudioStream" uid="uid://0e5u1e6xeqv" path="res://assets/sound/night_insects.ogg" id="3_olci6"]
+[ext_resource type="AudioStream" uid="uid://bnt11gus062iv" path="res://assets/sound/eat_frog.ogg" id="3_xvo6u"]
+[ext_resource type="Script" path="res://scenes/main/sound_manager.gd" id="4_bllw0"]
+[ext_resource type="AudioStream" uid="uid://6mhinxvmdqqs" path="res://assets/sound/dimetrodon_growl.ogg" id="5_cek40"]
 [ext_resource type="LabelSettings" uid="uid://bye3vxwg60mt5" path="res://resources/labels/game_title.tres" id="5_edcw7"]
 [ext_resource type="Material" uid="uid://xfncs8kp8pb7" path="res://resources/materials/underwater_shader_material.tres" id="6_6po0o"]
 [ext_resource type="Theme" uid="uid://bflh17b8kclhy" path="res://resources/buttons/button_theme.tres" id="6_66ijs"]
 [ext_resource type="LabelSettings" uid="uid://by2uc5jlkvm74" path="res://resources/labels/game_instructions.tres" id="6_hdddv"]
 [ext_resource type="Script" path="res://scenes/player/procedural_animation_component.gd" id="6_vgd0k"]
+[ext_resource type="AudioStream" uid="uid://bvve2c6w2ky0i" path="res://assets/sound/diplocaulus_growl.ogg" id="6_y3s6n"]
 [ext_resource type="Texture2D" uid="uid://1a3fn8o8a60y" path="res://assets/visual/player_head_01.png" id="7_0e2l8"]
+[ext_resource type="AudioStream" uid="uid://bf45rre6obe63" path="res://assets/sound/orthacanthus_growl.ogg" id="7_f3q7e"]
 [ext_resource type="LabelSettings" uid="uid://clfkc3ikaaoin" path="res://resources/labels/score_label.tres" id="7_h8iyt"]
 [ext_resource type="Texture2D" uid="uid://d3spk4b3quhdd" path="res://assets/visual/player_head_02.png" id="8_2limp"]
 [ext_resource type="PackedScene" uid="uid://bsjc4qvhmuoow" path="res://scenes/player/segment_body.tscn" id="9_by1mr"]
+[ext_resource type="AudioStream" uid="uid://dpm82c3s06qgi" path="res://assets/sound/eat_insect.ogg" id="9_i662e"]
 [ext_resource type="PackedScene" uid="uid://bmwhvtcwawn10" path="res://scenes/player/segment_tail.tscn" id="12_m4e2w"]
 [ext_resource type="PackedScene" uid="uid://chy0piolcwixe" path="res://scenes/player/segment_with_legs.tscn" id="13_g7ckj"]
 [ext_resource type="LabelSettings" uid="uid://bncy4xxs382wq" path="res://resources/labels/settings_label.tres" id="13_kc4oo"]
@@ -125,11 +133,28 @@ shader_parameter/glow_radius = null
 [node name="main" type="Node"]
 script = ExtResource("1_sl07k")
 
+[node name="SoundManager" type="Node" parent="."]
+script = ExtResource("4_bllw0")
+surface_ambiance_sound = ExtResource("3_olci6")
+underwater_ambiance_sound = ExtResource("2_voi15")
+dimetrodon_sound = ExtResource("5_cek40")
+diplocaulus_sound = ExtResource("6_y3s6n")
+orthacanthus_sound = ExtResource("7_f3q7e")
+gerobatrachus_sound = ExtResource("3_xvo6u")
+insect_sound = ExtResource("9_i662e")
+
 [node name="MusicAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 process_mode = 3
 stream = ExtResource("2_0bul8")
 pitch_scale = 0.8
 autoplay = true
+
+[node name="SFXAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+
+[node name="AmbientAudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_0vbyx")

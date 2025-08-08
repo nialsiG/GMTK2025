@@ -1,13 +1,15 @@
 extends Node
 
+# Gameplay events
 signal GameOver
+signal AddPoints(amount: int)
 signal PlayerAtSurface
+signal PlayerDive
+
+# Spawn elements
 signal NewRiverChunk(origin: Vector3)
 
-# points
-signal AddPoints(amount: int)
-
-# unlockables
+# Unlockables
 signal UnlockDimetrodon
 signal UnlockDiplocaulus
 signal UnlockOrthacanthus
